@@ -1,5 +1,8 @@
+using Group8.TravelExperts.Data.Domain;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -7,11 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Group8.TravelExperts.Data.Domain;
-using Microsoft.AspNetCore.Authentication.Cookies;
 
-namespace Group8.TravelExperts.App
+namespace RickyTestApp
 {
     public class Startup
     {
@@ -26,11 +26,10 @@ namespace Group8.TravelExperts.App
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TravelExpertsContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("TravelExpertsConnection"));
-            });
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(opt => opt.LoginPath = "/Account/Login");
-            services.AddRazorPages();
+                options.UseSqlServer("Server=localhost\\sqlexpress;Database=TravelExperts;Trusted_Connection=True;"));
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
+                AddCookie(opt => opt.LoginPath = "/Account/Login");
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,20 +41,24 @@ namespace Group8.TravelExperts.App
             }
             else
             {
-                app.UseExceptionHandler("/Error");
+                app.UseExceptionHandler("/Home/Error");
             }
 
             app.UseStatusCodePages();
-
+            
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

@@ -17,6 +17,11 @@ namespace Group8.TravelExperts.Data.Domain
         {
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Server=localhost\\sqlexpress;Database=TravelExperts;Trusted_Connection=True;");
+        }
+
         public virtual DbSet<Affiliation> Affiliations { get; set; }
         public virtual DbSet<Agency> Agencies { get; set; }
         public virtual DbSet<Agent> Agents { get; set; }
