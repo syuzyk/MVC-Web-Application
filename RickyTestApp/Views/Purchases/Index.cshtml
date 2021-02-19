@@ -24,8 +24,8 @@
     <td>@package.BookingNo</td>
     <td>@package.PkgName</td>
     <td>@package.Class</td>
-    <td>@package.TripStart</td>
-    <td>@package.TripEnd</td>
+    <td>@(package.TripStart.HasValue ? package.TripStart.Value.ToString("dd/MM/yyyy") : "")</td>
+    <td>@(package.TripEnd.HasValue ? package.TripEnd.Value.ToString("dd/MM/yyyy") : "")</td>
     <td>@string.Format("{0:C}", package.TotalPrice)</td>
     <td>@package.IsPaid</td>
 </tr>
@@ -55,8 +55,8 @@
     <td>@product.SupName</td>
     <td>@product.Destination</td>
     <td>@product.Class</td>
-    <td>@product.TripStart</td>
-    <td>@product.TripEnd</td>
+    <td>@(product.TripStart.HasValue ? product.TripStart.Value.ToString("dd/MM/yyyy") : "")</td>
+    <td>@(product.TripEnd.HasValue ? product.TripEnd.Value.ToString("dd/MM/yyyy") : "")</td>
     <td>@string.Format("{0:C}", product.TotalPrice)</td>
     <td>@product.IsPaid</td>
 </tr>
