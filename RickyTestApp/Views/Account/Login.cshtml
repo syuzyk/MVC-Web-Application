@@ -5,7 +5,7 @@
 
 <form asp-action="Login">
     <h3>Login</h3>
-
+    @*<h4 id="uxTest">Hello Test</h4>*@
     <table class="table col-4">
         <tr>
             <td>Username:</td>
@@ -19,6 +19,17 @@
             <td colspan="2"><input type="submit" value="Authenticate" class="btn btn-primary" /></td>
         </tr>
     </table>
-
 </form>
+
+@*@section Scripts
+{
+    <script>
+        $(document.ready(function () {
+            $("#uxTest").change(function () {
+                var newName = "Testing Change";
+                $("uxTest").val() = newName;
+            })
+        })
+    </script>
+}*@
 
