@@ -75,3 +75,8 @@ body {
 .jumbotron {
     background-color: #e0e8f6;
 }
+
+/*controls color of navbar*/
+.navbar, .navbar-expand-sm, navbar-toggleable-sm, navbar-light {
+    background-color: #c4cbd7;
+}
