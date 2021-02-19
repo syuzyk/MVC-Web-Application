@@ -5,64 +5,70 @@
     IEnumerable<RickyTestApp.Models.PurchaseViewModel> products = ViewData["Products"] as IEnumerable<RickyTestApp.Models.PurchaseViewModel>;
 }
 
-<h3>Purchases</h3>
+<h2 style="display:inline;">Purchases</h2>
+<div style="font-weight:bold; display:inline; float:right;"> @string.Format("{0:C}", TempData["Amount Owing"])</div>
+<div style="display:inline; float:right;">Total amount owing is: &nbsp;</div>
 
-<h5>Packages</h5>
-<table class="table">
-    <tr>
-        <th>Booking Number</th>
-        <th>Package Name</th>
-        <th>Class</th>
-        <th>Trip Start Date</th>
-        <th>Trip End Date</th>
-        <th>Total Price</th>
-        <th>Customer has paid</th>
-    </tr>
-    @foreach (PurchaseViewModel package in packages)
-    {
-<tr>
-    <td>@package.BookingNo</td>
-    <td>@package.PkgName</td>
-    <td>@package.Class</td>
-    <td>@(package.TripStart.HasValue ? package.TripStart.Value.ToString("dd/MM/yyyy") : "")</td>
-    <td>@(package.TripEnd.HasValue ? package.TripEnd.Value.ToString("dd/MM/yyyy") : "")</td>
-    <td>@string.Format("{0:C}", package.TotalPrice)</td>
-    <td>@package.IsPaid</td>
-</tr>
-    }
-</table>
+<hr />
 
+<h4> Packages</h4>
+
+<div class="jumbotron mt-4">
+    <table class="table">
+        <tr>
+            <th>Booking Number</th>
+            <th>Package Name</th>
+            <th>Class</th>
+            <th>Trip Start Date</th>
+            <th>Trip End Date</th>
+            <th>Total Price</th>
+            <th>Customer has paid</th>
+        </tr>
+        @foreach (PurchaseViewModel package in packages)
+        {
+            <tr>
+                <td>@package.BookingNo</td>
+                <td>@package.PkgName</td>
+                <td>@package.Class</td>
+                <td>@(package.TripStart.HasValue ? package.TripStart.Value.ToString("dd/MM/yyyy") : "")</td>
+                <td>@(package.TripEnd.HasValue ? package.TripEnd.Value.ToString("dd/MM/yyyy") : "")</td>
+                <td>@string.Format("{0:C}", package.TotalPrice)</td>
+                <td>@package.IsPaid</td>
+            </tr>
+        }
+    </table>
+</div>
+
+<hr />
+
+<h4>Products</h4>
+<div class="jumbotron mt-4">
+    <table class="table">
+        <tr>
+            <th>Booking Number</th>
+            <th>Product Type</th>
+            <th>Provided By</th>
+            <th>Destination</th>
+            <th>Class</th>
+            <th>Trip Start Date</th>
+            <th>Trip End Date</th>
+            <th>Total Price</th>
+            <th>Customer has paid</th>
+        </tr>
+        @foreach (PurchaseViewModel product in products)
+        {
+            <tr>
+                <td>@product.BookingNo</td>
+                <td>@product.ProdName</td>
+                <td>@product.SupName</td>
+                <td>@product.Destination</td>
+                <td>@product.Class</td>
+                <td>@(product.TripStart.HasValue ? product.TripStart.Value.ToString("dd/MM/yyyy") : "")</td>
+                <td>@(product.TripEnd.HasValue ? product.TripEnd.Value.ToString("dd/MM/yyyy") : "")</td>
+                <td>@string.Format("{0:C}", product.TotalPrice)</td>
+                <td>@product.IsPaid</td>
+            </tr>
+        }
+    </table>
+</div>
 <br />
-
-<h5>Products</h5>
-<table class="table">
-    <tr>
-        <th>Booking Number</th>
-        <th>Product Type</th>
-        <th>Provided By</th>
-        <th>Destination</th>
-        <th>Class</th>
-        <th>Trip Start Date</th>
-        <th>Trip End Date</th>
-        <th>Total Price</th>
-        <th>Customer has paid</th>
-    </tr>
-    @foreach (PurchaseViewModel product in products)
-    {
-<tr>
-    <td>@product.BookingNo</td>
-    <td>@product.ProdName</td>
-    <td>@product.SupName</td>
-    <td>@product.Destination</td>
-    <td>@product.Class</td>
-    <td>@(product.TripStart.HasValue ? product.TripStart.Value.ToString("dd/MM/yyyy") : "")</td>
-    <td>@(product.TripEnd.HasValue ? product.TripEnd.Value.ToString("dd/MM/yyyy") : "")</td>
-    <td>@string.Format("{0:C}", product.TotalPrice)</td>
-    <td>@product.IsPaid</td>
-</tr>
-    }
-</table>
-
-<br />
-
-<p>Total amount owing is @string.Format("{0:C}", TempData["Amount Owing"])</p>
