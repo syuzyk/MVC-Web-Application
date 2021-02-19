@@ -80,3 +80,9 @@ body {
 .navbar, .navbar-expand-sm, navbar-toggleable-sm, navbar-light {
     background-color: #c4cbd7;
 }
+table#regtable,
+table#regtable td{
+    border: none !important;
+    padding-bottom:0px;
+    padding-top:0px;
+}
