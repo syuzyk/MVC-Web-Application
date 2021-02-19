@@ -26,7 +26,7 @@
     <td>@package.Class</td>
     <td>@package.TripStart</td>
     <td>@package.TripEnd</td>
-    <td>@package.TotalPrice</td>
+    <td>@string.Format("{0:C}", package.TotalPrice)</td>
     <td>@package.IsPaid</td>
 </tr>
     }
@@ -57,7 +57,7 @@
     <td>@product.Class</td>
     <td>@product.TripStart</td>
     <td>@product.TripEnd</td>
-    <td>@product.TotalPrice</td>
+    <td>@string.Format("{0:C}", product.TotalPrice)</td>
     <td>@product.IsPaid</td>
 </tr>
     }

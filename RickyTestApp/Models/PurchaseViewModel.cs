@@ -24,6 +24,7 @@ namespace RickyTestApp.Models
         [Display(Name = "Trip End Date")]
         public DateTime? TripEnd { get; set; }
         [Display(Name = "Total Price")]
+        [DataType(DataType.Currency)]
         public decimal TotalPrice { get; set; }
         [Display(Name = "Customer has paid")]
         public string IsPaid { get; set; }
