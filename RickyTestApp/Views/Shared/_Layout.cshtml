@@ -27,7 +27,7 @@
                     </ul>
                 </div>
             </div>
-            <span id="uxWelcome" class="navbar-text">Welcome @TempData["CustomerFName"]</span>
+            <span id="uxWelcome" class="navbar-text">Welcome @TempData.Peek("CustomerFName")</span>
             <ul class="navbar-nav rm">
                 <li class="nav-item">
                     <a class="nav-link text-light" runat="server"
