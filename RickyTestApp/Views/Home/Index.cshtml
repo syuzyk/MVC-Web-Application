@@ -2,7 +2,51 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="jumbotron mt-4">
+    <div class="text-center">
+        <br />
+        <br />
+        <br />
+        <h1 class="display-4">Welcome to Travel Experts</h1>
+        <h5> Quality travel packages for the discerning traveler.</h5>
+    </div>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-md" style="border:solid;">
+            <h2>Register</h2>
+            <p>
+                Need a vacation? Create an account to book your dream getaway.
+            </p>
+            <p>
+                <a class="btn btn-default" runat="server" href="~/Registration" style="font-weight:bold;">Go &raquo;</a>
+            </p>
+        </div>
+        &nbsp;
+        <div class="col-md" style="border:solid;">
+            <h2>Login</h2>
+            <p>
+                Already have an account? Log in to view your packages.
+            </p>
+            <p>
+                <a class="btn btn-default" runat="server" href="~/Account/Login" style="font-weight:bold;">Go &raquo;</a>
+            </p>
+        </div>
+        &nbsp;
+        <div class="col-md" style="border:solid;">
+            <h2>Purchases</h2>
+            <p>
+                Click here to view your purchased products and packages.
+            </p>
+            <p>
+                <a class="btn btn-default" runat="server" href="~/Purchases" style="font-weight:bold;">Go &raquo;</a>
+            </p>
+        </div>
+    </div>
 </div>
