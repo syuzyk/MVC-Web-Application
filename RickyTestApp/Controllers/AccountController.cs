@@ -48,5 +48,11 @@ namespace RickyTestApp.Controllers
             else
                 return Redirect(TempData["ReturnUrl"].ToString());
         }
+
+        public async Task<IActionResult> LogoutAsync(UserViewModel user)
+        {
+            TempData.Clear();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
