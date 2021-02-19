@@ -19,6 +19,7 @@ namespace RickyTestApp.Models
         public string Destination { get; set; }
         public string Class { get; set; }
         [Display(Name = "Trip Start Date")]
+        [DataType(DataType.Date)]
         public DateTime? TripStart { get; set; }
         [Display(Name = "Trip End Date")]
         public DateTime? TripEnd { get; set; }
