@@ -9,53 +9,47 @@ using System.Threading.Tasks;
 
 namespace RickyTestApp.Controllers
 {
-    [Authorize]
+    
     public class PurchasesController : Controller
     {
+        [Authorize]
         public IActionResult Index()
         {
-            if (TempData["CustomerId"] != null)
+            var packagesPurchased = BookingDetailsManager.GetPurchasedPackages((int)TempData.Peek("CustomerId"));
+
+            ViewData["Packages"] = packagesPurchased.Select(pkg => new PurchaseViewModel
             {
-                var packagesPurchased = BookingDetailsManager.GetPurchasedPackages((int)TempData["CustomerId"]);
+                BookingNo = pkg.BookingNo,
+                Class = pkg.Class,
+                Destination = pkg.Destination,
+                IsPaid = pkg.IsPaid,
+                PkgName = pkg.PkgName,
+                ProdName = pkg.ProdName,
+                SupName = pkg.SupName,
+                TotalPrice = pkg.TotalPrice,
+                TripEnd = pkg.TripEnd,
+                TripStart = pkg.TripStart
+            });
 
-                ViewData["Packages"] = packagesPurchased.Select(pkg => new PurchaseViewModel
-                {
-                    BookingNo = pkg.BookingNo,
-                    Class = pkg.Class,
-                    Destination = pkg.Destination,
-                    IsPaid = pkg.IsPaid,
-                    PkgName = pkg.PkgName,
-                    ProdName = pkg.ProdName,
-                    SupName = pkg.SupName,
-                    TotalPrice = pkg.TotalPrice,
-                    TripEnd = pkg.TripEnd,
-                    TripStart = pkg.TripStart
-                });
+            var productsPurchased = BookingDetailsManager.GetPurchasedProducts((int)TempData.Peek("CustomerId"));
 
-                var productsPurchased = BookingDetailsManager.GetPurchasedProducts((int)TempData["CustomerId"]);
-
-                ViewData["Products"] = productsPurchased.Select(prod => new PurchaseViewModel
-                {
-                    BookingNo = prod.BookingNo,
-                    Class = prod.Class,
-                    Destination = prod.Destination,
-                    IsPaid = prod.IsPaid,
-                    PkgName = prod.PkgName,
-                    ProdName = prod.ProdName,
-                    SupName = prod.SupName,
-                    TotalPrice = prod.TotalPrice,
-                    TripEnd = prod.TripEnd,
-                    TripStart = prod.TripStart
-                });
-
-                TempData["Amount Owing"] = BookingDetailsManager.GetTotalOwing();
-
-                return View();
-            }
-            else
+            ViewData["Products"] = productsPurchased.Select(prod => new PurchaseViewModel
             {
-                return RedirectToAction("Login", "Account");
-            }
+                BookingNo = prod.BookingNo,
+                Class = prod.Class,
+                Destination = prod.Destination,
+                IsPaid = prod.IsPaid,
+                PkgName = prod.PkgName,
+                ProdName = prod.ProdName,
+                SupName = prod.SupName,
+                TotalPrice = prod.TotalPrice,
+                TripEnd = prod.TripEnd,
+                TripStart = prod.TripStart
+            });
+
+            TempData["Amount Owing"] = BookingDetailsManager.GetTotalOwing();
+
+            return View();
         }
     }
 }

@@ -7,6 +7,7 @@ using Group8.TravelExperts.Data.Domain;
 using RickyTestApp.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace RickyTestApp.Controllers
 {
@@ -52,6 +53,7 @@ namespace RickyTestApp.Controllers
         public async Task<IActionResult> LogoutAsync(UserViewModel user)
         {
             TempData.Clear();
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme); 
             return RedirectToAction("Index", "Home");
         }
     }
