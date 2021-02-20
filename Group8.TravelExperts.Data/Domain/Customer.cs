@@ -30,14 +30,17 @@ namespace Group8.TravelExperts.Data.Domain
         [Required(ErrorMessage = "PLEASE ENTER YOUR PROVINCE")]
         public string CustProv { get; set; }
         [Required(ErrorMessage = "PLEASE ENTER YOUR POSTAL CODE")]
+        [RegularExpression(@"^[A-Za-z]\d[A-Za-z] ?\d[A-Za-z]\d$", ErrorMessage = "PLEASE ENTER A VAILD POSTAL CODE")]
         public string CustPostal { get; set; }
         [Required(ErrorMessage = "PLEASE ENTER YOUR PHONE NUMBER")]
+        [RegularExpression(@"^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$", ErrorMessage = "PLEASE ENTER A VAILD PHONE NUMBER")]
         public string CustHomePhone { get; set; }
        
         public string CustBusPhone { get; set; }
         
         public string CustFax { get; set; }
         [Required(ErrorMessage = "PLEASE ENTER YOUR EMAIL ADDRESS")]
+        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$", ErrorMessage = "PLEASE ENTER A VAILD EMAIL ADDRESS")]                                                                                                         
         public string CustEmail { get; set; }
         public int? AgentId { get; set; }
 
