@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h2 style="display:inline;">Make a Purchase</h2>
+<h2 style="display:inline;">Packages and Products</h2>
 
 <hr />
 
@@ -27,14 +27,14 @@
         {
     <tr>
         <td>@package.PkgName</td>
-        <td id="purchasetd">@(package.TripStart.HasValue ? package.TripStart.Value.ToString("dd/MM/yyyy") : "")</td>
-        <td id="purchasetd">@(package.TripEnd.HasValue ? package.TripEnd.Value.ToString("dd/MM/yyyy") : "")</td>
-        <td id="purchasetd">@string.Format("{0:C}", package.BasePrice)</td>
-        <td id="purchasetd">@package.FeeAmt</td>
-        <td id="purchasetd">@string.Format("{0:C}", package.FeeAmt)</td>
-        <td id="purchasetd">@string.Format("{0:C}", package.TotalPrice)</td>
+        <td>@(package.TripStart.HasValue ? package.TripStart.Value.ToString("dd/MM/yyyy") : "")</td>
+        <td>@(package.TripEnd.HasValue ? package.TripEnd.Value.ToString("dd/MM/yyyy") : "")</td>
+        <td>@string.Format("{0:C}", package.BasePrice)</td>
+        <td>@package.FeeAmt</td>
+        <td>@string.Format("{0:C}", package.FeeAmt)</td>
+        <td>@string.Format("{0:C}", package.TotalPrice)</td>
         @if (User.Identity.IsAuthenticated)
-        {<td style="text-align:center;">@Html.ActionLink("Order Now", "Add", new { customerId = (int)TempData.Peek("CustomerId"), pkgName = package.PkgName, basePrice = package.BasePrice, tripStart = package.TripStart, tripEnd = package.TripEnd })</td>}
+        {<td>@Html.ActionLink("Order now", "Add", new { customerId = (int)TempData.Peek("CustomerId"), pkgName = package.PkgName, basePrice = package.BasePrice, tripStart = package.TripStart, tripEnd = package.TripEnd })</td>}
     </tr>
         }
     </table>
