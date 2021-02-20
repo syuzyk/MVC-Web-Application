@@ -34,7 +34,7 @@
                         </tr>
                         <tr><td colspan="3"><hr /></td></tr>
                         <tr>
-                            <td colspan="3"  style="padding-bottom: 20px;">
+                            <td colspan="3" style="padding-bottom: 20px;">
                                 <label asp-for="CustAddress" class="control-label">Street Address*</label>
                                 <input asp-for="CustAddress" class="form-control" />
                                 <span asp-validation-for="CustAddress" class="text-danger"></span>
@@ -95,15 +95,16 @@
                                 <span asp-validation-for="CustomersAuthentication.Password" class="text-danger"></span>
                             </td>
                             <td>
-                                <label asp-for="CustomersAuthentication.Password" class="control-label">Re-Enter Password*</label>
-                                <input type="password" asp-for="CustomersAuthentication.Password" class="form-control"/>
-                                <span asp-validation-for="CustomersAuthentication.Password" class="text-danger"></span>
+                                <label asp-for="CustomersAuthentication.ConfirmPassword" class="control-label">Confirm Password*</label>
+                                <input type="password" asp-for="CustomersAuthentication.ConfirmPassword" class="form-control" />
+                                <span asp-validation-for="CustomersAuthentication.ConfirmPassword" class="text-danger"></span>
                             </td>
                         </tr>
+
                         <tr><td colspan="3"><hr /></td></tr>
                         <tr>
                             <td class="text-center" colspan="3">
-                                <input type="submit" onclick="" value="Create" class="btn btn-primary" />
+                                <input type="submit" onclick="" value="Register" class="btn btn-primary" />
                             </td>
                         </tr>
                     </table>
@@ -113,8 +114,6 @@
     </div>
 </div>
 
+@section Scripts {
 
-
-    @section Scripts {
-
-    }
+}

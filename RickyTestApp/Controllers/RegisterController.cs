@@ -10,9 +10,6 @@ namespace RickyTestApp.Controllers
 {
     public class RegisterController : Controller
     {
-
-
-
         public ActionResult RegisterDetails()
         {
             return View();
@@ -22,17 +19,25 @@ namespace RickyTestApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult RegisterDetails(Customer c)
         {
-            try
+            if (ModelState.IsValid)
             {
-                var context = new TravelExpertsContext();
-                context.Customers.Add(c);
-                context.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                try
+                {
+                    var context = new TravelExpertsContext();
+                    context.Customers.Add(c);
+                    context.SaveChanges();
+                    return RedirectToAction("Index", "Home");
+                }
+                catch
+                {
+                    return View();
+                }
             }
-            catch
+            else
             {
                 return View();
             }
+
         }
         // GET: RegisterController/Create
        
