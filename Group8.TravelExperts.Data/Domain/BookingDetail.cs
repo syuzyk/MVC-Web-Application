@@ -125,28 +125,9 @@ namespace Group8.TravelExperts.Data.Domain
             return unpaidTotal;
         }
 
-        public static void AddPackageOrder(int packageId, int customerId)
+        public static void AddPackageOrder(int customerId, string pkgName, decimal basePrice, DateTime tripStart, DateTime tripEnd)
         {
             TravelExpertsContext context = new TravelExpertsContext();
-
-            var query = from packages in context.Packages
-                                           where packages.PackageId == packageId
-                                           select new Package
-                                           {
-                                               PkgName = packages.PkgName,
-                                               PkgStartDate = packages.PkgStartDate,
-                                               PkgEndDate = packages.PkgEndDate,
-                                               PkgBasePrice = packages.PkgBasePrice,
-                                           };
-
-            List<Package> packageList = new List<Package>();
-
-            foreach (Package package in query)
-            {
-                packageList.Add(package);
-            }
-
-            Package orderedPackage = packageList[0];
 
             Booking booking = new Booking
             {
@@ -164,11 +145,11 @@ namespace Group8.TravelExperts.Data.Domain
             BookingDetail bookingDetail = new BookingDetail
             {
                 ItineraryNo = null,
-                TripStart = orderedPackage.PkgStartDate,
-                TripEnd = orderedPackage.PkgEndDate,
+                TripStart = tripStart,
+                TripEnd = tripEnd,
                 Description = null,
                 Destination = null,
-                BasePrice = orderedPackage.PkgBasePrice,
+                BasePrice = basePrice,
                 AgencyCommission = null,
                 BookingId = booking.BookingId,
                 Region = null,
@@ -177,7 +158,7 @@ namespace Group8.TravelExperts.Data.Domain
                 FeeAmt = 25.0m,
                 ProdName = null,
                 SupName = null,
-                PkgName = orderedPackage.PkgName,
+                PkgName = pkgName,
                 IsPaid = "NO"
             };
 

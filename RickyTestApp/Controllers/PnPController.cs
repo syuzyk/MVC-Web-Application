@@ -33,11 +33,11 @@ namespace RickyTestApp.Controllers
         }
 
         [Authorize]
-        public ActionResult Add(int packageId, int customerId)
+        public ActionResult Add(int customerId, string pkgName, decimal basePrice, DateTime tripStart, DateTime tripEnd)
         {
             try
             {
-                BookingDetailsManager.AddPackageOrder(packageId, customerId);
+                BookingDetailsManager.AddPackageOrder(customerId, pkgName, basePrice, tripStart, tripEnd);
                 return RedirectToAction("Index", "Purchases");
             }
             catch

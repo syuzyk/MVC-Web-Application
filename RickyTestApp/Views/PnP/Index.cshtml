@@ -34,7 +34,7 @@
         <td>@string.Format("{0:C}", package.FeeAmt)</td>
         <td>@string.Format("{0:C}", package.TotalPrice)</td>
         @if (User.Identity.IsAuthenticated)
-        {<td>@Html.ActionLink("Order now", "Add", new { packageId = package.PackageId, customerId = (int)TempData.Peek("CustomerId") })</td>}
+        {<td>@Html.ActionLink("Order now", "Add", new { customerId = (int)TempData.Peek("CustomerId"), pkgName = package.PkgName, basePrice = package.BasePrice, tripStart = package.TripStart, tripEnd = package.TripEnd })</td>}
     </tr>
         }
     </table>
