@@ -30,7 +30,7 @@
         <td>@(package.TripStart.HasValue ? package.TripStart.Value.ToString("dd/MM/yyyy") : "")</td>
         <td>@(package.TripEnd.HasValue ? package.TripEnd.Value.ToString("dd/MM/yyyy") : "")</td>
         <td>@string.Format("{0:C}", package.BasePrice)</td>
-        <td>@package.FeeAmt</td>
+        <td>@package.FeeName</td>
         <td>@string.Format("{0:C}", package.FeeAmt)</td>
         <td>@string.Format("{0:C}", package.TotalPrice)</td>
         @if (User.Identity.IsAuthenticated)
