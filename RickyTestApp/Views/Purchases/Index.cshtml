@@ -36,6 +36,12 @@
                 <td>@package.IsPaid</td>
             </tr>
         }
+        @if (packages.Count() == 0)
+        {
+            <tr>
+                <td colspan="7">Haven't purchased any packages yet? Check out what TravelExperts has to offer by clicking here:</td>
+            </tr>
+        }
     </table>
 </div>
 
@@ -67,6 +73,12 @@
                 <td>@(product.TripEnd.HasValue ? product.TripEnd.Value.ToString("dd/MM/yyyy") : "")</td>
                 <td>@string.Format("{0:C}", product.TotalPrice)</td>
                 <td>@product.IsPaid</td>
+            </tr>
+        }
+        @if (products.Count() == 0)
+        {
+            <tr>
+                <td colspan="7">Haven't purchased any products yet? Check out what TravelExperts has to offer by clicking here:</td>
             </tr>
         }
     </table>

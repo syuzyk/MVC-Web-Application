@@ -47,7 +47,7 @@ namespace RickyTestApp.Controllers
                 TripStart = prod.TripStart
             });
 
-            TempData["Amount Owing"] = BookingDetailsManager.GetTotalOwing();
+            TempData["Amount Owing"] = BookingDetailsManager.GetTotalOwing((int)TempData.Peek("CustomerId"));
 
             return View();
         }
