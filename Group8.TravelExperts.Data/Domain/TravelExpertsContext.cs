@@ -40,6 +40,7 @@ namespace Group8.TravelExperts.Data.Domain
         public virtual DbSet<PackagesProductsSupplier> PackagesProductsSuppliers { get; set; }
         public virtual DbSet<PpsOld> PpsOlds { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductsDisplayed> ProductsDisplayeds { get; set; }
         public virtual DbSet<ProductsSupplier> ProductsSuppliers { get; set; }
         public virtual DbSet<PsOld> PsOlds { get; set; }
         public virtual DbSet<Region> Regions { get; set; }
@@ -579,6 +580,30 @@ namespace Group8.TravelExperts.Data.Domain
                 entity.Property(e => e.ProdName)
                     .IsRequired()
                     .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<ProductsDisplayed>(entity =>
+            {
+                entity.HasKey(e => e.ProdDisplayId)
+                    .HasName("PK__Products__40C3C46F1465FFB3");
+
+                entity.ToTable("ProductsDisplayed");
+
+                entity.Property(e => e.BasePrice).HasColumnType("money");
+
+                entity.Property(e => e.Destination).HasMaxLength(255);
+
+                entity.Property(e => e.FeeAmt).HasColumnType("money");
+
+                entity.Property(e => e.FeeName).HasMaxLength(50);
+
+                entity.Property(e => e.ProdName).HasMaxLength(50);
+
+                entity.Property(e => e.SupName).HasMaxLength(255);
+
+                entity.Property(e => e.TripEnd).HasColumnType("datetime");
+
+                entity.Property(e => e.TripStart).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<ProductsSupplier>(entity =>

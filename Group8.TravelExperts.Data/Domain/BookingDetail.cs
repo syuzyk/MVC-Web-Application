@@ -164,6 +164,47 @@ namespace Group8.TravelExperts.Data.Domain
 
             context.BookingDetails.Add(bookingDetail);
             context.SaveChanges();
-        } 
+        }
+
+        public static void AddProductOrder(int customerId, string prodName, string supName, string destination, decimal basePrice, string feeName, decimal feeAmt, DateTime tripStart, DateTime tripEnd)
+        {
+            TravelExpertsContext context = new TravelExpertsContext();
+
+            Booking booking = new Booking
+            {
+                BookingDate = null,
+                BookingNo = BookingNoGenerator.GenerateBookingNo(),
+                CustomerId = customerId,
+                PackageId = 1,
+                TripTypeId = "B",
+                TravelerCount = null
+            };
+
+            context.Bookings.Add(booking);
+            context.SaveChanges();
+
+            BookingDetail bookingDetail = new BookingDetail
+            {
+                ItineraryNo = null,
+                TripStart = tripStart,
+                TripEnd = tripEnd,
+                Description = null,
+                Destination = destination,
+                BasePrice = basePrice,
+                AgencyCommission = null,
+                BookingId = booking.BookingId,
+                Region = null,
+                Class = null,
+                FeeName = feeName,
+                FeeAmt = feeAmt,
+                ProdName = prodName,
+                SupName = supName,
+                PkgName = null,
+                IsPaid = "NO"
+            };
+
+            context.BookingDetails.Add(bookingDetail);
+            context.SaveChanges();
+        }
     }
 }

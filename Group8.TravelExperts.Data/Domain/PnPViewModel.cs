@@ -9,8 +9,6 @@ namespace Group8.TravelExperts.Data.Domain
 {
     public class PnPViewModel
     {
-        public int PackageId { get; set; }
-        
         [Display(Name = "Package Name")]
         public string PkgName { get; set; }
         [Display(Name = "Product Type")]

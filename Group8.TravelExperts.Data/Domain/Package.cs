@@ -37,7 +37,6 @@ namespace Group8.TravelExperts.Data.Domain
             var query = from packages in context.Packages
                         select new PnPViewModel
                         {
-                            PackageId = packages.PackageId,
                             PkgName = packages.PkgName,
                             ProdName = null,
                             SupName = null,
