@@ -19,25 +19,25 @@ namespace Group8.TravelExperts.Data.Domain
         }
 
         public int CustomerId { get; set; }
-        [Required (ErrorMessage ="PLEASE ENETER YOUR FIRST NAME")]
+        [Required (ErrorMessage ="PLEASE ENTER YOUR FIRST NAME")]
         public string CustFirstName { get; set; }
-        [Required(ErrorMessage = "PLEASE ENETER YOUR LAST NAME")]
+        [Required(ErrorMessage = "PLEASE ENTER YOUR LAST NAME")]
         public string CustLastName { get; set; }
-        [Required(ErrorMessage = "PLEASE ENETER YOUR ADDRESS")]
+        [Required(ErrorMessage = "PLEASE ENTER YOUR ADDRESS")]
         public string CustAddress { get; set; }
-        [Required(ErrorMessage = "PLEASE ENETER YOUR CITY")]
+        [Required(ErrorMessage = "PLEASE ENTER YOUR CITY")]
         public string CustCity { get; set; }
-        [Required(ErrorMessage = "PLEASE ENETER YOUR PROVIENCE")]
+        [Required(ErrorMessage = "PLEASE ENTER YOUR PROVINCE")]
         public string CustProv { get; set; }
-        [Required(ErrorMessage = "PLEASE ENETER YOUR POSTAL CODE")]
+        [Required(ErrorMessage = "PLEASE ENTER YOUR POSTAL CODE")]
         public string CustPostal { get; set; }
-        [Required(ErrorMessage = "PLEASE ENETER YOUR PHONE NUMBER")]
+        [Required(ErrorMessage = "PLEASE ENTER YOUR PHONE NUMBER")]
         public string CustHomePhone { get; set; }
        
         public string CustBusPhone { get; set; }
         
         public string CustFax { get; set; }
-        [Required(ErrorMessage = "PLEASE ENETER YOUR E-MAIL ADDRESS")]
+        [Required(ErrorMessage = "PLEASE ENTER YOUR EMAIL ADDRESS")]
         public string CustEmail { get; set; }
         public int? AgentId { get; set; }
 

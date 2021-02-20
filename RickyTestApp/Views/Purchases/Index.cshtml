@@ -5,7 +5,7 @@
     IEnumerable<RickyTestApp.Models.PurchaseViewModel> products = ViewData["Products"] as IEnumerable<RickyTestApp.Models.PurchaseViewModel>;
 }
 
-<h2 style="display:inline;">Orders</h2>
+<h2 style="display:inline;">Purchases</h2>
 <div style="font-weight:bold; display:inline; float:right;"> @string.Format("{0:C}", TempData["Amount Owing"])</div>
 <div style="display:inline; float:right;">Total amount owing is: &nbsp;</div>
 
@@ -22,7 +22,7 @@
             <th>Trip Start Date</th>
             <th>Trip End Date</th>
             <th>Total Price</th>
-            <th>Customer has paid</th>
+            <th>Customer has Paid</th>
         </tr>
         @foreach (PurchaseViewModel package in packages)
         {
@@ -39,7 +39,8 @@
         @if (packages.Count() == 0)
         {
             <tr>
-                <td colspan="7">Haven't ordered any packages yet? Check out what TravelExperts has to offer by clicking here:</td>
+                <td colspan="6">Haven't purchased any packages yet? Check out what TravelExperts has to offer by clicking here:</td>
+                <td style="text-align:left;"><a href="/Sample/Link"><span>Sample Link</span></a></td>
             </tr>
         }
     </table>
@@ -59,7 +60,7 @@
             <th>Trip Start Date</th>
             <th>Trip End Date</th>
             <th>Total Price</th>
-            <th>Customer has paid</th>
+            <th>Customer has Paid</th>
         </tr>
         @foreach (PurchaseViewModel product in products)
         {
@@ -78,7 +79,8 @@
         @if (products.Count() == 0)
         {
             <tr>
-                <td colspan="7">Haven't ordered any products yet? Check out what TravelExperts has to offer by clicking here:</td>
+                <td colspan="7">Haven't purchased any products yet? Check out what TravelExperts has to offer by clicking here:</td>
+                <td colspan="2" style="text-align:left;"><a href="/Sample/Link"><span>Sample Link</span></a></td>
             </tr>
         }
     </table>
