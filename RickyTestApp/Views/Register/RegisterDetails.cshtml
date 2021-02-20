@@ -12,13 +12,14 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <form asp-action="RegisterDetails">
-                    <table class="table">
-                        <tr style="border:none;">
+                    <table class="table" id="regtable" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
                             <td colspan="3">
                                 <h5>Enter your information below to create an account:</h5>
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             </td>
                         </tr>
+                        <tr><td colspan="3"><br /></td></tr>
                         <tr>
                             <td>
                                 <label id="name" asp-for="CustFirstName" class="control-label">First Name</label>
@@ -33,7 +34,7 @@
                         </tr>
                         <tr><td colspan="3"><hr /></td></tr>
                         <tr>
-                            <td colspan="3">
+                            <td colspan="3"  style="padding-bottom: 20px;">
                                 <label asp-for="CustAddress" class="control-label">Street Address</label>
                                 <input asp-for="CustAddress" class="form-control" />
                                 <span asp-validation-for="CustAddress" class="text-danger"></span>
@@ -58,7 +59,7 @@
                         </tr>
                         <tr><td colspan="3"><hr /></td></tr>
                         <tr>
-                            <td>
+                            <td style="padding-bottom: 20px;">
                                 <label asp-for="CustHomePhone" class="control-label">Home Phone</label>
                                 <input asp-for="CustHomePhone" class="form-control" />
                                 <span asp-validation-for="CustHomePhone" class="text-danger"></span>

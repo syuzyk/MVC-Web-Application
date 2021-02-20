@@ -94,24 +94,28 @@ namespace Group8.TravelExperts.Data.Domain
             return purchasedProductList;
         }
 
-        public static decimal GetTotalOwing()
+        public static decimal GetTotalOwing(int customerId)
         {
             decimal unpaidBasePrices;
             decimal unpaidFees;
 
             TravelExpertsContext context = new TravelExpertsContext();
 
-            var uBP = (from bookingDetails in context.BookingDetails
-                                    where bookingDetails.IsPaid == "NO"
-                                    select bookingDetails.BasePrice).Sum();
+            var uBP = (from bookings in context.Bookings
+                            join bookingDetails in context.BookingDetails on bookings.BookingId equals bookingDetails.BookingId
+                       where bookings.CustomerId == customerId
+                       where bookingDetails.IsPaid == "NO"
+                       select bookingDetails.BasePrice).Sum();
             if (uBP == null)
                 unpaidBasePrices = 0;
             else
                 unpaidBasePrices = uBP.Value;
 
-            var uF = (from bookingDetails in context.BookingDetails
-                              where bookingDetails.IsPaid == "NO"
-                              select bookingDetails.FeeAmt).Sum();
+            var uF = (from bookings in context.Bookings
+                      join bookingDetails in context.BookingDetails on bookings.BookingId equals bookingDetails.BookingId
+                      where bookings.CustomerId == customerId
+                      where bookingDetails.IsPaid == "NO"
+                      select bookingDetails.FeeAmt).Sum();
 
             if (uF == null)
                 unpaidFees = 0;
