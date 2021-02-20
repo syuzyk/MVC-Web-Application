@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace RickyTestApp.Models
+namespace Group8.TravelExperts.Data.Domain
 {
-    public class PurchaseViewModel
+    public class PnPViewModel
     {
-        [Display(Name = "Booking Number")]
-        public string BookingNo { get; set; }
+        public int PackageId { get; set; }
+        
         [Display(Name = "Package Name")]
         public string PkgName { get; set; }
         [Display(Name = "Product Type")]
@@ -23,10 +24,15 @@ namespace RickyTestApp.Models
         [Display(Name = "Trip End Date")]
         [DataType(DataType.Date)]
         public DateTime? TripEnd { get; set; }
+        [Display(Name = "Base Price")]
+        public decimal? BasePrice { get; set; }
+        [Display(Name = "Fee type")]
+        public string FeeName { get; set; }
+        [Display(Name = "Fee Amount")]
+        public decimal? FeeAmt { get; set; }
         [Display(Name = "Total Price")]
         [DataType(DataType.Currency)]
         public decimal TotalPrice { get; set; }
-        [Display(Name = "Customer has paid")]
-        public string IsPaid { get; set; }
+
     }
 }

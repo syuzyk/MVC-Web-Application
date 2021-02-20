@@ -86,3 +86,7 @@ table#regtable td{
     padding-bottom:0px;
     padding-top:0px;
 }
+
+td#purchasetd {
+    vertical-align: middle;
+}

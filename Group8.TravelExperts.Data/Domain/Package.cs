@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 #nullable disable
 
@@ -25,5 +26,38 @@ namespace Group8.TravelExperts.Data.Domain
         public virtual ICollection<Booking> Bookings { get; set; }
         public virtual ICollection<PackagesProductsSupplier> PackagesProductsSuppliers { get; set; }
         public virtual ICollection<PpsOld> PpsOlds { get; set; }
+    }
+
+    public class PackageManager
+    {
+        public static List<PnPViewModel> GetAllPackages()
+        {
+            TravelExpertsContext context = new TravelExpertsContext();
+
+            var query = from packages in context.Packages
+                        select new PnPViewModel
+                        {
+                            PackageId = packages.PackageId,
+                            PkgName = packages.PkgName,
+                            ProdName = null,
+                            SupName = null,
+                            Destination = null,
+                            TripStart = packages.PkgStartDate,
+                            TripEnd = packages.PkgEndDate,
+                            BasePrice = packages.PkgBasePrice,
+                            FeeName = "Booking Charge",
+                            FeeAmt = 25.0m,
+                            TotalPrice = packages.PkgBasePrice + 25
+                        };
+
+            List<PnPViewModel> displayedPackgesList = new List<PnPViewModel>();
+
+            foreach (PnPViewModel package in query)
+            {
+                displayedPackgesList.Add(package);
+            }
+
+            return displayedPackgesList;
+        }
     }
 }

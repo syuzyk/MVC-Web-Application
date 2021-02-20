@@ -1,0 +1,43 @@
+﻿
+@{
+    IEnumerable<Group8.TravelExperts.Data.Domain.PnPViewModel> packages = ViewData["Packages To Sell"] as IEnumerable<Group8.TravelExperts.Data.Domain.PnPViewModel>;
+    ViewData["Title"] = "Index";
+}
+
+<h2 style="display:inline;">Make a Purchase</h2>
+
+<hr />
+
+<h4>Packages</h4>
+
+<div class="jumbotron mt-4">
+    <table class="table">
+        <tr>
+            <th>Package Name</th>
+            <th>Trip Start Date</th>
+            <th>Trip End Date</th>
+            <th>Base Price</th>
+            <th>Fee Type</th>
+            <th>Fee Amount</th>
+            <th>Total Price</th>
+            @if (User.Identity.IsAuthenticated)
+            {<th></th>}
+        </tr>
+        @foreach (Group8.TravelExperts.Data.Domain.PnPViewModel package in packages)
+        {
+    <tr>
+        <td>@package.PkgName</td>
+        <td id="purchasetd">@(package.TripStart.HasValue ? package.TripStart.Value.ToString("dd/MM/yyyy") : "")</td>
+        <td id="purchasetd">@(package.TripEnd.HasValue ? package.TripEnd.Value.ToString("dd/MM/yyyy") : "")</td>
+        <td id="purchasetd">@string.Format("{0:C}", package.BasePrice)</td>
+        <td id="purchasetd">@package.FeeAmt</td>
+        <td id="purchasetd">@string.Format("{0:C}", package.FeeAmt)</td>
+        <td id="purchasetd">@string.Format("{0:C}", package.TotalPrice)</td>
+        @if (User.Identity.IsAuthenticated)
+        {<td style="text-align:center;">@Html.ActionLink("Order Now", "Add", new { customerId = (int)TempData.Peek("CustomerId"), pkgName = package.PkgName, basePrice = package.BasePrice, tripStart = package.TripStart, tripEnd = package.TripEnd })</td>}
+    </tr>
+        }
+    </table>
+</div>
+
+<hr />

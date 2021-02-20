@@ -45,7 +45,6 @@ namespace Group8.TravelExperts.Data.Domain
                             ProdName = bookingDetails.ProdName,
                             SupName = bookingDetails.SupName,
                             Destination = bookingDetails.Destination,
-                            Class = bookingDetails.Class,
                             TripStart = bookingDetails.TripStart,
                             TripEnd = bookingDetails.TripEnd,
                             TotalPrice = (decimal)(bookingDetails.BasePrice + bookingDetails.FeeAmt),
@@ -77,7 +76,6 @@ namespace Group8.TravelExperts.Data.Domain
                             ProdName = bookingDetails.ProdName,
                             SupName = bookingDetails.SupName,
                             Destination = bookingDetails.Destination,
-                            Class = bookingDetails.Class,
                             TripStart = bookingDetails.TripStart,
                             TripEnd = bookingDetails.TripEnd,
                             TotalPrice = (decimal)(bookingDetails.BasePrice + bookingDetails.FeeAmt),
@@ -126,5 +124,46 @@ namespace Group8.TravelExperts.Data.Domain
 
             return unpaidTotal;
         }
+
+        public static void AddPackageOrder(int customerId, string pkgName, decimal basePrice, DateTime tripStart, DateTime tripEnd)
+        {
+            TravelExpertsContext context = new TravelExpertsContext();
+
+            Booking booking = new Booking
+            {
+                BookingDate = null,
+                BookingNo = BookingNoGenerator.GenerateBookingNo(),
+                CustomerId = customerId,
+                PackageId = 1,
+                TripTypeId = "B",
+                TravelerCount = null
+            };
+
+            context.Bookings.Add(booking);
+            context.SaveChanges();
+
+            BookingDetail bookingDetail = new BookingDetail
+            {
+                ItineraryNo = null,
+                TripStart = tripStart,
+                TripEnd = tripEnd,
+                Description = null,
+                Destination = null,
+                BasePrice = basePrice,
+                AgencyCommission = null,
+                BookingId = booking.BookingId,
+                Region = null,
+                Class = null,
+                FeeName = "Booking Charge",
+                FeeAmt = 25.0m,
+                ProdName = null,
+                SupName = null,
+                PkgName = pkgName,
+                IsPaid = "NO"
+            };
+
+            context.BookingDetails.Add(bookingDetail);
+            context.SaveChanges();
+        } 
     }
 }
