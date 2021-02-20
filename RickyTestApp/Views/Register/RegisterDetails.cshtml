@@ -86,17 +86,17 @@
                         <tr>
                             <td>
                                 <label id="user" asp-for="CustomersAuthentication.Username" class="control-label"></label>
-                                <input asp-for="CustomersAuthentication.Username" class="form-control" required />
+                                <input asp-for="CustomersAuthentication.Username" class="form-control" />
                                 <span asp-validation-for="CustomersAuthentication.Username" class="text-danger"></span>
                             </td>
                             <td>
                                 <label asp-for="CustomersAuthentication.Password" class="control-label"></label>
-                                <input type="password" asp-for="CustomersAuthentication.Password" class="form-control" required />
+                                <input type="password" asp-for="CustomersAuthentication.Password" class="form-control" />
                                 <span asp-validation-for="CustomersAuthentication.Password" class="text-danger"></span>
                             </td>
                             <td>
                                 <label asp-for="CustomersAuthentication.Password" class="control-label">Re-Enter Password</label>
-                                <input type="password" asp-for="CustomersAuthentication.Password" class="form-control" required />
+                                <input type="password" asp-for="CustomersAuthentication.Password" class="form-control"/>
                                 <span asp-validation-for="CustomersAuthentication.Password" class="text-danger"></span>
                             </td>
                         </tr>

@@ -22,16 +22,17 @@ namespace RickyTestApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult RegisterDetails(Customer c)
         {
-            int id = c.CustomerId;
-            var context = new TravelExpertsContext();
-
-            
-
-            
-            context.Customers.Add(c);
-           
-            context.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            try
+            {
+                var context = new TravelExpertsContext();
+                context.Customers.Add(c);
+                context.SaveChanges();
+                return RedirectToAction("Index", "Home");
+            }
+            catch
+            {
+                return View();
+            }
         }
         // GET: RegisterController/Create
        
