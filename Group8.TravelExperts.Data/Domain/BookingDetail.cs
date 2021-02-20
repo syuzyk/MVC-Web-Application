@@ -45,7 +45,6 @@ namespace Group8.TravelExperts.Data.Domain
                             ProdName = bookingDetails.ProdName,
                             SupName = bookingDetails.SupName,
                             Destination = bookingDetails.Destination,
-                            Class = bookingDetails.Class,
                             TripStart = bookingDetails.TripStart,
                             TripEnd = bookingDetails.TripEnd,
                             TotalPrice = (decimal)(bookingDetails.BasePrice + bookingDetails.FeeAmt),
@@ -77,7 +76,6 @@ namespace Group8.TravelExperts.Data.Domain
                             ProdName = bookingDetails.ProdName,
                             SupName = bookingDetails.SupName,
                             Destination = bookingDetails.Destination,
-                            Class = bookingDetails.Class,
                             TripStart = bookingDetails.TripStart,
                             TripEnd = bookingDetails.TripEnd,
                             TotalPrice = (decimal)(bookingDetails.BasePrice + bookingDetails.FeeAmt),
@@ -126,5 +124,65 @@ namespace Group8.TravelExperts.Data.Domain
 
             return unpaidTotal;
         }
+
+        public static void AddPackageOrder(int packageId, int customerId)
+        {
+            TravelExpertsContext context = new TravelExpertsContext();
+
+            var query = from packages in context.Packages
+                                           where packages.PackageId == packageId
+                                           select new Package
+                                           {
+                                               PkgName = packages.PkgName,
+                                               PkgStartDate = packages.PkgStartDate,
+                                               PkgEndDate = packages.PkgEndDate,
+                                               PkgBasePrice = packages.PkgBasePrice,
+                                           };
+
+            List<Package> packageList = new List<Package>();
+
+            foreach (Package package in query)
+            {
+                packageList.Add(package);
+            }
+
+            Package orderedPackage = packageList[0];
+
+            Booking booking = new Booking
+            {
+                BookingDate = null,
+                BookingNo = BookingNoGenerator.GenerateBookingNo(),
+                CustomerId = customerId,
+                PackageId = 1,
+                TripTypeId = "B",
+                TravelerCount = null
+            };
+
+            context.Bookings.Add(booking);
+            context.SaveChanges();
+
+            BookingDetail bookingDetail = new BookingDetail
+            {
+                ItineraryNo = null,
+                TripStart = orderedPackage.PkgStartDate,
+                TripEnd = orderedPackage.PkgEndDate,
+                Description = null,
+                Destination = null,
+                BasePrice = orderedPackage.PkgBasePrice,
+                AgencyCommission = null,
+                BookingId = booking.BookingId,
+                Region = null,
+                Class = null,
+                FeeName = "Booking Charge",
+                FeeAmt = 25.0m,
+                ProdName = null,
+                SupName = null,
+                PkgName = orderedPackage.PkgName,
+                IsPaid = "NO"
+            };
+
+            context.BookingDetails.Add(bookingDetail);
+            context.SaveChanges();
+        } 
     }
 }

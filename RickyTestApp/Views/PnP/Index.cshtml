@@ -1,0 +1,41 @@
+﻿
+@{
+    IEnumerable<Group8.TravelExperts.Data.Domain.PnPViewModel> packages = ViewData["Packages To Sell"] as IEnumerable<Group8.TravelExperts.Data.Domain.PnPViewModel>;
+    ViewData["Title"] = "Index";
+}
+
+<h2 style="display:inline;">Packages and Products</h2>
+
+<hr />
+
+<h4>Packages</h4>
+
+<div class="jumbotron mt-4">
+    <table class="table">
+        <tr>
+            <th>Package Name</th>
+            <th>Trip Start Date</th>
+            <th>Trip End Date</th>
+            <th>Base Price</th>
+            <th>Fee Type</th>
+            <th>Fee Amount</th>
+            <th>Total Price</th>
+            <th></th>
+        </tr>
+        @foreach (Group8.TravelExperts.Data.Domain.PnPViewModel package in packages)
+        {
+    <tr>
+        <td>@package.PkgName</td>
+        <td>@(package.TripStart.HasValue ? package.TripStart.Value.ToString("dd/MM/yyyy") : "")</td>
+        <td>@(package.TripEnd.HasValue ? package.TripEnd.Value.ToString("dd/MM/yyyy") : "")</td>
+        <td>@string.Format("{0:C}", package.BasePrice)</td>
+        <td>@package.FeeAmt</td>
+        <td>@string.Format("{0:C}", package.FeeAmt)</td>
+        <td>@string.Format("{0:C}", package.TotalPrice)</td>
+        <td>@Html.ActionLink("Order now", "Add", new { packageId = package.PackageId, customerId = (int)TempData.Peek("CustomerId") })</td>
+    </tr>
+        }
+    </table>
+</div>
+
+<hr />

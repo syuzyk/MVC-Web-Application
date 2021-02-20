@@ -17,7 +17,6 @@ namespace Group8.TravelExperts.Data.Domain
         [Display(Name = "Provided by")]
         public string SupName { get; set; }
         public string Destination { get; set; }
-        public string Class { get; set; }
         [Display(Name = "Trip Start Date")]
         public DateTime? TripStart { get; set; }
         [Display(Name = "Trip End Date")]

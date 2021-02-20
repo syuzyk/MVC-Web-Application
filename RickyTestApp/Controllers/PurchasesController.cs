@@ -20,7 +20,6 @@ namespace RickyTestApp.Controllers
             ViewData["Packages"] = packagesPurchased.Select(pkg => new PurchaseViewModel
             {
                 BookingNo = pkg.BookingNo,
-                Class = pkg.Class,
                 Destination = pkg.Destination,
                 IsPaid = pkg.IsPaid,
                 PkgName = pkg.PkgName,
@@ -36,7 +35,6 @@ namespace RickyTestApp.Controllers
             ViewData["Products"] = productsPurchased.Select(prod => new PurchaseViewModel
             {
                 BookingNo = prod.BookingNo,
-                Class = prod.Class,
                 Destination = prod.Destination,
                 IsPaid = prod.IsPaid,
                 PkgName = prod.PkgName,
@@ -49,6 +47,12 @@ namespace RickyTestApp.Controllers
 
             TempData["Amount Owing"] = BookingDetailsManager.GetTotalOwing((int)TempData.Peek("CustomerId"));
 
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Add(PurchaseModel purchase)
+        {
             return View();
         }
     }
