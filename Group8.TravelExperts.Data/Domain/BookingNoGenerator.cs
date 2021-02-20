@@ -25,7 +25,7 @@ namespace Group8.TravelExperts.Data.Domain
 
             int threeDigitNumber = Convert.ToInt32(Math.Floor(1000 * flt));
 
-            string bookingNo = str_bdr.ToString() + "-" + threeDigitNumber.ToString();
+            string bookingNo = str_bdr.ToString() + threeDigitNumber.ToString();
 
             return bookingNo;
         }

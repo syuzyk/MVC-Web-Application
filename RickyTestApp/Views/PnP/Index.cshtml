@@ -20,7 +20,8 @@
             <th>Fee Type</th>
             <th>Fee Amount</th>
             <th>Total Price</th>
-            <th></th>
+            @if (User.Identity.IsAuthenticated)
+            {<th></th>}
         </tr>
         @foreach (Group8.TravelExperts.Data.Domain.PnPViewModel package in packages)
         {
@@ -32,7 +33,8 @@
         <td>@package.FeeAmt</td>
         <td>@string.Format("{0:C}", package.FeeAmt)</td>
         <td>@string.Format("{0:C}", package.TotalPrice)</td>
-        <td>@Html.ActionLink("Order now", "Add", new { packageId = package.PackageId, customerId = (int)TempData.Peek("CustomerId") })</td>
+        @if (User.Identity.IsAuthenticated)
+        {<td>@Html.ActionLink("Order now", "Add", new { packageId = package.PackageId, customerId = (int)TempData.Peek("CustomerId") })</td>}
     </tr>
         }
     </table>
