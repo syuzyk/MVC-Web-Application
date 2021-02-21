@@ -97,16 +97,16 @@ namespace RickyTestApp.Controllers
         {
             var context = new TravelExpertsContext();
             var u = context.CustomersAuthentications.SingleOrDefault(cp => cp.CustomerId == id);
-            var msg = "<h5>";
+            var msg = "<h5 ";
             if(u.Password == oldp)
             {
                 u.Username = user;
                 u.Password = newp;
-                msg += "passwprd changed successfully</h5>";
+                msg += "style='color:blue;'> passwpod changed successfully !!</h5>";
             }
             else
             {
-                msg += "old passwprd is wrong</p>";
+                msg += "style='color:red;'> Password Update Failes !! old passwpod is wrong</p>";
             }
             context.SaveChanges();
             return Content(msg);
