@@ -3,10 +3,10 @@
     {
 
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-action="/Home/Index" title="Welcome">Welcome @TempData.Peek("CustomerFName")</a>
+            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index" title="Welcome">Welcome @TempData.Peek("CustomerFName")</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="Edit" asp-route-id="@TempData.Peek("CustomerId")">update Register</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="Edit" asp-route-id="@TempData.Peek("CustomerId")">Update personal information</a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-light" runat="server" title="Logout" id="uxLogout" asp-controller="Account" asp-action="Logout">
