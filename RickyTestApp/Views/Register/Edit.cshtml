@@ -6,7 +6,7 @@
 
 <div class="jumbotron mt-4">
     <div class="text-left">
-        <h1 class="text-center">Update Registered Information</h1>
+        <h1 class="text-center">Update Personal Information</h1>
         <hr />
 
         <div class="row justify-content-center">
@@ -15,7 +15,7 @@
                     <table class="table" id="regtable" border="0" cellspacing="0" cellpadding="0">
                         <tr>
                             <td colspan="3">
-                                <h5>Enter your information below to create an account:</h5>
+                                <h5>Change your information and click Update:</h5>
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             </td>
                         </tr>
@@ -103,7 +103,7 @@
                         <tr><td colspan="3"></td></tr>
                         <tr>
                             <td class="text-center" colspan="3">
-                                <input type="submit" value="Update info" class="btn btn-primary" />
+                                <input type="submit" value="Update information" class="btn btn-primary" formmethod="post" onclick="location.href='@Url.Action("Edit", "Register")'" />
                             </td>
                         </tr>
                     </table>

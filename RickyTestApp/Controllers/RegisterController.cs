@@ -47,7 +47,7 @@ namespace RickyTestApp.Controllers
 
         }
 
-       
+
         public ActionResult Edit(int id)
         {
             var context = new TravelExpertsContext();
