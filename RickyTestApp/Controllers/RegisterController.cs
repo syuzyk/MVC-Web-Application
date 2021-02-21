@@ -13,10 +13,6 @@ namespace RickyTestApp.Controllers
     public class RegisterController : Controller
     {
 
-
-
-
-
         public ActionResult RegisterDetails()
         {
             var context = new TravelExpertsContext();
@@ -51,7 +47,7 @@ namespace RickyTestApp.Controllers
 
         }
 
-        [Authorize]
+       
         public ActionResult Edit(int id)
         {
             var context = new TravelExpertsContext();
@@ -59,8 +55,8 @@ namespace RickyTestApp.Controllers
             return View(cust);
         }
 
-      
-        
+
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Customer c)
@@ -80,9 +76,9 @@ namespace RickyTestApp.Controllers
                 u.CustBusPhone = c.CustBusPhone;
                 u.CustFax = c.CustFax;
                 u.CustEmail = c.CustEmail;
-                //guys somehow this query is not working if you wannna work on it
-               // u.CustomersAuthentication.Username = c.CustomersAuthentication.Username;
-                //u.CustomersAuthentication.Password = c.CustomersAuthentication.Password;
+                
+                u.CustomersAuthentication.Username = c.CustomersAuthentication.Username;
+                u.CustomersAuthentication.Password = c.CustomersAuthentication.Password;
                 context.SaveChanges();
                 return RedirectToAction("Index", "Home");
             }
