@@ -35,6 +35,7 @@ namespace Group8.TravelExperts.Data.Domain
             TravelExpertsContext context = new TravelExpertsContext();
 
             var query = from packages in context.Packages
+                        orderby packages.PkgStartDate
                         select new PnPViewModel
                         {
                             PkgName = packages.PkgName,

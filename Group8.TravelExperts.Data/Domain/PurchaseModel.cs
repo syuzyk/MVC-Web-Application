@@ -9,6 +9,7 @@ namespace Group8.TravelExperts.Data.Domain
 {
     public class PurchaseModel
     {
+        public int BookingDetailId { get; set; }
         public string BookingNo { get; set; }
         [Display(Name = "Package Name")]
         public string PkgName { get; set; }

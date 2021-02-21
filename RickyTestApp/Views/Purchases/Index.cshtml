@@ -11,6 +11,8 @@
 
 <hr />
 
+@Html.Raw(TempData["msg"])
+
 <h4>Packages</h4>
 
 <div class="jumbotron mt-4">
@@ -25,18 +27,18 @@
         </tr>
         @foreach (PurchaseViewModel package in packages)
         {
-    <tr>
-        <td>@package.BookingNo</td>
-        <td>@package.PkgName</td>
-        <td>@(package.TripStart.HasValue ? package.TripStart.Value.ToString("MM/dd/yyyy") : "")</td>
-        <td>@(package.TripEnd.HasValue ? package.TripEnd.Value.ToString("MM/dd/yyyy") : "")</td>
-        <td>@string.Format("{0:C}", package.TotalPrice)</td>
-        <td>@package.IsPaid</td>
-        @if (package.IsPaid == "NO")
-        {
-            <td>@Html.ActionLink("Cancel order", "CancelProductOrder", new { onclick = "return confirm('Are you sure you wish to cancel this order?');" })</td>
-}
-    </tr>
+            <tr>
+                <td>@package.BookingNo</td>
+                <td>@package.PkgName</td>
+                <td>@(package.TripStart.HasValue ? package.TripStart.Value.ToString("MM/dd/yyyy") : "")</td>
+                <td>@(package.TripEnd.HasValue ? package.TripEnd.Value.ToString("MM/dd/yyyy") : "")</td>
+                <td>@string.Format("{0:C}", package.TotalPrice)</td>
+                <td>@package.IsPaid</td>
+                @if (package.IsPaid == "NO")
+                {
+                    <td>@Html.ActionLink("Cancel order", "CancelPackageOrder", new { bookingDetailsId = package.BookingDetailId, prodName = package.PkgName, tripStart = package.TripStart }, new { onclick = "return confirm('Are you sure you wish to cancel this order?');" })</td>
+                }
+            </tr>
         }
         @if (packages.Count() == 0)
         {
@@ -76,14 +78,16 @@
                 <td>@string.Format("{0:C}", product.TotalPrice)</td>
                 <td>@product.IsPaid</td>
                 @if (product.IsPaid == "NO")
-                {<td>@Html.ActionLink("Cancel order", "CancelProductOrder", new { onclick = "return confirm('Are you sure you wish to cancel this order?');" })</td>}
+                {
+                    <td>@Html.ActionLink("Cancel order", "CancelProductOrder", new { bookingDetailsId = product.BookingDetailId, prodName = product.ProdName, supName = product.SupName, tripStart = product.TripStart, }, new { onclick = "return confirm('Are you sure you wish to cancel this order?');" })</td>
+                }
             </tr>
         }
         @if (products.Count() == 0)
         {
-    <tr>
-        <td colspan="7">Haven't ordered any products yet? Check out what TravelExperts has to offer by clicking <a href="/pnp"><span>here</span></a>:</td>
-    </tr>
+            <tr>
+                <td colspan="7">Haven't ordered any products yet? Check out what TravelExperts has to offer by clicking <a href="/pnp"><span>here</span></a>:</td>
+            </tr>
         }
     </table>
 </div>

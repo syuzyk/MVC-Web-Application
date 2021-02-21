@@ -40,6 +40,7 @@ namespace Group8.TravelExperts.Data.Domain
                         where bookings.CustomerId == customerId
                         where bookingDetails.ProdName == null
                         select new PurchaseModel { 
+                            BookingDetailId = bookingDetails.BookingDetailId,
                             BookingNo = bookings.BookingNo,
                             PkgName = bookingDetails.PkgName,
                             ProdName = bookingDetails.ProdName,
@@ -71,6 +72,7 @@ namespace Group8.TravelExperts.Data.Domain
                         where bookingDetails.PkgName == null
                         select new PurchaseModel
                         {
+                            BookingDetailId = bookingDetails.BookingDetailId,
                             BookingNo = bookings.BookingNo,
                             PkgName = bookingDetails.PkgName,
                             ProdName = bookingDetails.ProdName,
@@ -204,6 +206,23 @@ namespace Group8.TravelExperts.Data.Domain
             };
 
             context.BookingDetails.Add(bookingDetail);
+            context.SaveChanges();
+        }
+
+        public static void DeleteOrder(int bookingDetailsId)
+        {
+            TravelExpertsContext context = new TravelExpertsContext();
+
+            var target = from bookingDetails in context.BookingDetails
+                         where bookingDetails.BookingDetailId == bookingDetailsId
+                         select bookingDetails;
+
+            List<BookingDetail> list = new List<BookingDetail>();
+
+            foreach (BookingDetail deet in target)
+                list.Add(deet);
+
+            context.BookingDetails.Remove(list[0]);
             context.SaveChanges();
         }
     }

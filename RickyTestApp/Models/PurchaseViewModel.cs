@@ -8,6 +8,8 @@ namespace RickyTestApp.Models
 {
     public class PurchaseViewModel
     {
+        public int BookingDetailId { get; set; }
+      
         [Display(Name = "Booking Number")]
         public string BookingNo { get; set; }
         [Display(Name = "Package Name")]
