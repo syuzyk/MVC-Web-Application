@@ -36,7 +36,7 @@
                 <td>@package.IsPaid</td>
                 @if (package.IsPaid == "NO")
                 {
-                    <td>@Html.ActionLink("Cancel order", "CancelPackageOrder", new { bookingDetailsId = package.BookingDetailId, prodName = package.PkgName, tripStart = package.TripStart }, new { onclick = "return confirm('Are you sure you wish to cancel this order?');" })</td>
+                    <td>@Html.ActionLink("Cancel order", "CancelPackageOrder", new { bookingDetailsId = package.BookingDetailId, pkgName = package.PkgName, tripStart = package.TripStart }, new { onclick = "return confirm('Are you sure you wish to cancel this order?');" })</td>
                 }
             </tr>
         }
