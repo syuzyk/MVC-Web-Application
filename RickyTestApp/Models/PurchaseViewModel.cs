@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace RickyTestApp.Models
 {
+    //Ricky wrote this code.
     public class PurchaseViewModel
     {
+        public int BookingDetailId { get; set; }
+      
         [Display(Name = "Booking Number")]
         public string BookingNo { get; set; }
         [Display(Name = "Package Name")]

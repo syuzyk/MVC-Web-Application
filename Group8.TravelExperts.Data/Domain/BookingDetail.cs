@@ -29,6 +29,7 @@ namespace Group8.TravelExperts.Data.Domain
         public virtual Booking Booking { get; set; }
     }
 
+    //Ricky added this code.
     public class BookingDetailsManager
     {
         public static List<PurchaseModel> GetPurchasedPackages(int customerId)
@@ -40,6 +41,7 @@ namespace Group8.TravelExperts.Data.Domain
                         where bookings.CustomerId == customerId
                         where bookingDetails.ProdName == null
                         select new PurchaseModel { 
+                            BookingDetailId = bookingDetails.BookingDetailId,
                             BookingNo = bookings.BookingNo,
                             PkgName = bookingDetails.PkgName,
                             ProdName = bookingDetails.ProdName,
@@ -71,6 +73,7 @@ namespace Group8.TravelExperts.Data.Domain
                         where bookingDetails.PkgName == null
                         select new PurchaseModel
                         {
+                            BookingDetailId = bookingDetails.BookingDetailId,
                             BookingNo = bookings.BookingNo,
                             PkgName = bookingDetails.PkgName,
                             ProdName = bookingDetails.ProdName,
@@ -123,6 +126,19 @@ namespace Group8.TravelExperts.Data.Domain
             decimal unpaidTotal = unpaidBasePrices + unpaidFees;
 
             return unpaidTotal;
+        }
+
+        public static void RequestRefund(int bookingDetailsId)
+        {
+            TravelExpertsContext context = new TravelExpertsContext();
+
+            var target = (from bookingDetails in context.BookingDetails
+                          where bookingDetails.BookingDetailId == bookingDetailsId
+                          select bookingDetails).SingleOrDefault();
+
+            target.IsPaid = "REFUND REQUESTED";
+
+            context.SaveChanges();
         }
 
         public static void AddPackageOrder(int customerId, string pkgName, decimal basePrice, DateTime tripStart, DateTime tripEnd)
@@ -204,6 +220,23 @@ namespace Group8.TravelExperts.Data.Domain
             };
 
             context.BookingDetails.Add(bookingDetail);
+            context.SaveChanges();
+        }
+
+        public static void DeleteOrder(int bookingDetailsId)
+        {
+            TravelExpertsContext context = new TravelExpertsContext();
+
+            var target = from bookingDetails in context.BookingDetails
+                         where bookingDetails.BookingDetailId == bookingDetailsId
+                         select bookingDetails;
+
+            List<BookingDetail> list = new List<BookingDetail>();
+
+            foreach (BookingDetail deet in target)
+                list.Add(deet);
+
+            context.BookingDetails.Remove(list[0]);
             context.SaveChanges();
         }
     }

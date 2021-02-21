@@ -21,22 +21,12 @@
 
     <div class="row" style="margin-bottom:-30px">
         <div class="col-md" style="border:solid;">
-            <h2>Register</h2>
+            <h2>Products and Packages</h2>
             <p>
-                Need a vacation? Create an account to book your dream getaway.
+                Check out the products and packages we're offering!
             </p>
             <p>
-                <a class="btn btn-default" runat="server" href="~/Register/RegisterDetails" style="font-weight:bold;">Go &raquo;</a>
-            </p>
-        </div>
-        &nbsp;
-        <div class="col-md" style="border:solid;">
-            <h2>Login</h2>
-            <p>
-                Already have an account? Log in to view your packages.
-            </p>
-            <p>
-                <a class="btn btn-default" runat="server" href="~/Account/Login" style="font-weight:bold;">Go &raquo;</a>
+                <a runat="server" href="~/PnP" style="font-weight:bold;">Go &raquo;</a>
             </p>
         </div>
         &nbsp;
@@ -46,8 +36,33 @@
                 Click here to view the products and packages you've ordered.
             </p>
             <p>
-                <a class="btn btn-default" runat="server" href="~/Purchases" style="font-weight:bold;">Go &raquo;</a>
+                <a runat="server" href="~/Purchases" style="font-weight:bold;">Go &raquo;</a>
             </p>
         </div>
     </div>
+    <br />
+    <br />
+    @if (!User.Identity.IsAuthenticated)
+    {<div class="row" style="margin-bottom:-30px">
+            <div class="col-md" style="border:solid;">
+                <h2>Register</h2>
+                <p>
+                    Need a vacation? Create an account to book your dream getaway.
+                </p>
+                <p>
+                    <a runat="server" href="~/Register/RegisterDetails" style="font-weight:bold;">Go &raquo;</a>
+                </p>
+            </div>
+            &nbsp;
+            <div class="col-md" style="border:solid;">
+                <h2>Login</h2>
+                <p>
+                    Already have an account? Log in to view your packages.
+                </p>
+                <p>
+                    <a runat="server" href="~/Account/Login" style="font-weight:bold;">Go &raquo;</a>
+                </p>
+            </div>
+        </div>
+    }
 </div>

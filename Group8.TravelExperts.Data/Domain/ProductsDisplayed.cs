@@ -6,6 +6,8 @@ using System.Linq;
 
 namespace Group8.TravelExperts.Data.Domain
 {
+    //Ricky added this code.
+    
     public partial class ProductsDisplayed
     {
         public int ProdDisplayId { get; set; }

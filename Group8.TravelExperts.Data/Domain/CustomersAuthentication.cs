@@ -24,6 +24,7 @@ namespace Group8.TravelExperts.Data.Domain
         public virtual Customer Customer { get; set; }
     }
 
+    //Ricky added this code.
     public class CustomersAuthenticationManager
     {
         public static ClaimsModel Authenticate(string username, string password)

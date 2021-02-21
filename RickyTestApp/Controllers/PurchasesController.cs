@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RickyTestApp.Controllers
 {
-    
+    //Ricky wrote this code.
     public class PurchasesController : Controller
     {
         [Authorize]
@@ -19,6 +19,7 @@ namespace RickyTestApp.Controllers
 
             ViewData["Packages"] = packagesPurchased.Select(pkg => new PurchaseViewModel
             {
+                BookingDetailId = pkg.BookingDetailId,
                 BookingNo = pkg.BookingNo,
                 Destination = pkg.Destination,
                 IsPaid = pkg.IsPaid,
@@ -34,6 +35,7 @@ namespace RickyTestApp.Controllers
 
             ViewData["Products"] = productsPurchased.Select(prod => new PurchaseViewModel
             {
+                BookingDetailId = prod.BookingDetailId,
                 BookingNo = prod.BookingNo,
                 Destination = prod.Destination,
                 IsPaid = prod.IsPaid,
@@ -54,6 +56,67 @@ namespace RickyTestApp.Controllers
         public IActionResult Add(PurchaseModel purchase)
         {
             return View();
+        }
+
+        public ActionResult CancelProductOrder (int bookingDetailsId, string prodName, string supName, DateTime tripStart)
+        {
+            DateTime today = DateTime.Today;
+            int daysUntilTripStart = (tripStart - today).Days;
+            if (daysUntilTripStart < 4)
+                TempData["msg"] = "<script>alert('Today is too close to the trip's start date. Please contact your agent.');</script>";
+                   
+            else
+            {
+                try
+                {
+                    BookingDetailsManager.DeleteOrder(bookingDetailsId);
+                    TempData["msg"] = "<script>alert('Your order for " + prodName + " provided by " + supName + " has been canceled.');</script>";
+                }
+                catch
+                {
+                    TempData["msg"] = "<script>alert('An issue occured when cancelling your order. Please try again later or contact your agent.');</script>";
+                } 
+            }
+                
+            return RedirectToAction("Index", "Purchases");
+        }
+
+        public ActionResult CancelPackageOrder(int bookingDetailsId, string pkgName, DateTime tripStart)
+        {
+            DateTime today = DateTime.Today;
+            int daysUntilTripStart = (tripStart - today).Days;
+            if (daysUntilTripStart < 4)
+                TempData["msg"] = "<script>alert('Today is too close to the trip's start date. Please contact your agent.');</script>";
+
+            else
+            {
+                try
+                {
+                    BookingDetailsManager.DeleteOrder(bookingDetailsId);
+                    TempData["msg"] = "<script>alert('Your order for " + pkgName + " has been canceled.');</script>";
+                }
+                catch
+                {
+                    TempData["msg"] = "<script>alert('An issue occured when cancelling your order. Please try again later or contact your agent.');</script>";
+                }
+            }
+
+            return RedirectToAction("Index", "Purchases");
+        }
+
+        public ActionResult RequestRefund(int bookingDetailsId)
+        {
+            try
+            {
+                BookingDetailsManager.RequestRefund(bookingDetailsId);
+                TempData["msg"] = "<script>alert('Your request for a refund has been submitted.');</script>";
+            }
+            catch
+            {
+                TempData["msg"] = "<script>alert('An issue occured when requesting your refund. Please try again later or contact your agent.');</script>";
+            }
+
+            return RedirectToAction("Index", "Purchases");
         }
     }
 }

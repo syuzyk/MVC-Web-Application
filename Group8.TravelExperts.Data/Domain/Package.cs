@@ -28,6 +28,7 @@ namespace Group8.TravelExperts.Data.Domain
         public virtual ICollection<PpsOld> PpsOlds { get; set; }
     }
 
+    //Ricky added this code.
     public class PackageManager
     {
         public static List<PnPViewModel> GetAllPackages()
@@ -35,6 +36,7 @@ namespace Group8.TravelExperts.Data.Domain
             TravelExpertsContext context = new TravelExpertsContext();
 
             var query = from packages in context.Packages
+                        orderby packages.PkgStartDate
                         select new PnPViewModel
                         {
                             PkgName = packages.PkgName,

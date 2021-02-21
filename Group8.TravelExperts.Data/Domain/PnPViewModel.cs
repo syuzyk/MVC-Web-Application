@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Group8.TravelExperts.Data.Domain
 {
+    //Ricky added this code.
     public class PnPViewModel
     {
         [Display(Name = "Package Name")]

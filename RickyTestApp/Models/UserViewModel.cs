@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace RickyTestApp.Models
 {
+    //Ricky wrote this code.
     public class UserViewModel
     {
         public string Username { get; set; }

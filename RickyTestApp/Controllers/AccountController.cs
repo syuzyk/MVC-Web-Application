@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace RickyTestApp.Controllers
 {
+    //Ricky wrote this code.
     public class AccountController : Controller
     {
         public IActionResult Login(string returnUrl = null)
