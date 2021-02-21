@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Group8.TravelExperts.Data.Domain
 {
+    //Ricky added this code.
     public class BookingNoGenerator
     {
         public static string GenerateBookingNo()

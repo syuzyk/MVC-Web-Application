@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace RickyTestApp.Controllers
 {
+    //Ricky wrote this code.
     public class PnPController : Controller
     {
         public IActionResult Index()

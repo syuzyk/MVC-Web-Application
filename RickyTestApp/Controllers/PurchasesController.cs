@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RickyTestApp.Controllers
 {
-    
+    //Ricky wrote this code.
     public class PurchasesController : Controller
     {
         [Authorize]
@@ -99,6 +99,21 @@ namespace RickyTestApp.Controllers
                 {
                     TempData["msg"] = "<script>alert('An issue occured when cancelling your order. Please try again later or contact your agent.');</script>";
                 }
+            }
+
+            return RedirectToAction("Index", "Purchases");
+        }
+
+        public ActionResult RequestRefund(int bookingDetailsId)
+        {
+            try
+            {
+                BookingDetailsManager.RequestRefund(bookingDetailsId);
+                TempData["msg"] = "<script>alert('Your request for a refund has been submitted.');</script>";
+            }
+            catch
+            {
+                TempData["msg"] = "<script>alert('An issue occured when requesting your refund. Please try again later or contact your agent.');</script>";
             }
 
             return RedirectToAction("Index", "Purchases");

@@ -29,6 +29,7 @@ namespace Group8.TravelExperts.Data.Domain
         public virtual Booking Booking { get; set; }
     }
 
+    //Ricky added this code.
     public class BookingDetailsManager
     {
         public static List<PurchaseModel> GetPurchasedPackages(int customerId)
@@ -125,6 +126,19 @@ namespace Group8.TravelExperts.Data.Domain
             decimal unpaidTotal = unpaidBasePrices + unpaidFees;
 
             return unpaidTotal;
+        }
+
+        public static void RequestRefund(int bookingDetailsId)
+        {
+            TravelExpertsContext context = new TravelExpertsContext();
+
+            var target = (from bookingDetails in context.BookingDetails
+                          where bookingDetails.BookingDetailId == bookingDetailsId
+                          select bookingDetails).SingleOrDefault();
+
+            target.IsPaid = "REFUND REQUESTED";
+
+            context.SaveChanges();
         }
 
         public static void AddPackageOrder(int customerId, string pkgName, decimal basePrice, DateTime tripStart, DateTime tripEnd)

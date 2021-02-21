@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace RickyTestApp.Models
 {
+    //Ricky wrote this code.
     public class PurchaseViewModel
     {
         public int BookingDetailId { get; set; }
