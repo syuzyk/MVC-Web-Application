@@ -26,8 +26,7 @@ namespace RickyTestApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult RegisterDetails(Customer c)
         {
-            if (ModelState.IsValid)
-            {
+            
                 try
                 {
                     var context = new TravelExpertsContext();
@@ -39,15 +38,11 @@ namespace RickyTestApp.Controllers
                 {
                     return View();
                 }
-            }
-            else
-            {
-                return View();
-            }
+            
 
         }
 
-       
+       [Authorize]
         public ActionResult Edit(int id)
         {
             var context = new TravelExpertsContext();
@@ -58,13 +53,15 @@ namespace RickyTestApp.Controllers
 
        
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(Customer c)
+        [Authorize]
+        public ActionResult Edit(int id,Customer c)
         {
+
             try
             {
+
                 var context = new TravelExpertsContext();
-                var u = context.Customers.SingleOrDefault(cp => cp.CustomerId == c.CustomerId);
+                var u = context.Customers.SingleOrDefault(cp => cp.CustomerId == id);
 
                 u.CustFirstName = c.CustFirstName;
                 u.CustLastName = c.CustLastName;
@@ -76,9 +73,9 @@ namespace RickyTestApp.Controllers
                 u.CustBusPhone = c.CustBusPhone;
                 u.CustFax = c.CustFax;
                 u.CustEmail = c.CustEmail;
-                
-                u.CustomersAuthentication.Username = c.CustomersAuthentication.Username;
-                u.CustomersAuthentication.Password = c.CustomersAuthentication.Password;
+
+                // u.CustomersAuthentication.Username = c.CustomersAuthentication.Username;
+                //u.CustomersAuthentication.Password = c.CustomersAuthentication.Password;
                 context.SaveChanges();
                 return RedirectToAction("Index", "Home");
             }
@@ -86,6 +83,9 @@ namespace RickyTestApp.Controllers
             {
                 return View();
             }
+               
+            }
+           
         }
 
         //// GET: RegisterController/Delete/5
@@ -109,4 +109,4 @@ namespace RickyTestApp.Controllers
         //    }
         //}
     }
-}
+
