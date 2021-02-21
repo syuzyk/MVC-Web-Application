@@ -16,7 +16,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" asp-area="" asp-controller="Register" asp-action="Edit" asp-route-id="@TempData.Peek("CustomerId")" title="Update Information">Update Personal Information</a>
-                    <a class="dropdown-item" title="Change Password">Change Password</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Register" asp-action="EditAuth" asp-route-id="@TempData.Peek("CustomerId")" title="Change Password">Change Password</a>
                 </div>
             </li>
             <li class="nav-item">

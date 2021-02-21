@@ -85,28 +85,55 @@ namespace RickyTestApp.Controllers
             }
                
             }
-           
+        [Authorize]
+        public ActionResult EditAuth(int id)
+        {
+            var context = new TravelExpertsContext();
+            var cust = context.CustomersAuthentications.SingleOrDefault(c => c.CustomerId == id);
+            return View(cust);
         }
-
-        //// GET: RegisterController/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: RegisterController/Delete/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Delete(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        [Authorize]
+        public ActionResult EditAuth1(int id,string user,string oldp,string newp)
+        {
+            var context = new TravelExpertsContext();
+            var u = context.CustomersAuthentications.SingleOrDefault(cp => cp.CustomerId == id);
+            var msg = "<h5>";
+            if(u.Password == oldp)
+            {
+                u.Username = user;
+                u.Password = newp;
+                msg += "passwprd changed successfully</h5>";
+            }
+            else
+            {
+                msg += "old passwprd is wrong</p>";
+            }
+            context.SaveChanges();
+            return Content(msg);
+         
+        }
     }
+
+
+    //// GET: RegisterController/Delete/5
+    //public ActionResult Delete(int id)
+    //{
+    //    return View();
+    //}
+
+    //// POST: RegisterController/Delete/5
+    //[HttpPost]
+    //[ValidateAntiForgeryToken]
+    //public ActionResult Delete(int id, IFormCollection collection)
+    //{
+    //    try
+    //    {
+    //        return RedirectToAction(nameof(Index));
+    //    }
+    //    catch
+    //    {
+    //        return View();
+    //    }
+    //}
+}
 
