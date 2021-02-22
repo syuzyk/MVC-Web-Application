@@ -29,9 +29,16 @@ namespace Group8.TravelExperts.Data.Domain
         public virtual Customer Customer { get; set; }
     }
 
-    //Ricky added this code.
+    //Ricky added manager and the first three methods.
     public class CustomersAuthenticationManager
     {
+        /// <summary>
+        /// If username/password is correct, return username, customerId and customer's first name
+        /// to be stored in temp data.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public static ClaimsModel Authenticate(string username, string password)
         {
             TravelExpertsContext context = new TravelExpertsContext();
@@ -57,6 +64,11 @@ namespace Group8.TravelExperts.Data.Domain
                 return null;  
         }
 
+        /// <summary>
+        /// If user is requesting password reset, pull their security question to display to user.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public static string GetSecurityQuestion(string username)
         {
             TravelExpertsContext context = new TravelExpertsContext();
@@ -73,6 +85,12 @@ namespace Group8.TravelExperts.Data.Domain
             return question;
         }
 
+        /// <summary>
+        /// Determines whether user's submitted to security question is correct.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="answer"></param>
+        /// <returns></returns>
         public static bool SecurityQuestionAnsweredCorrect(string username, string answer)
         {
             TravelExpertsContext context = new TravelExpertsContext();

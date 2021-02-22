@@ -31,6 +31,10 @@ namespace Group8.TravelExperts.Data.Domain
     //Ricky added this code.
     public class PackageManager
     {
+        /// <summary>
+        /// Gets packages being offered to display.
+        /// </summary>
+        /// <returns></returns>
         public static List<PnPViewModel> GetAllPackages()
         {
             TravelExpertsContext context = new TravelExpertsContext();

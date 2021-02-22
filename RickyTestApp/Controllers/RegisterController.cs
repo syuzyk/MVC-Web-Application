@@ -8,7 +8,6 @@ namespace RickyTestApp.Controllers
 {
     public class RegisterController : Controller
     {
-
         public ActionResult RegisterDetails()
         {
             ViewBag.cust = CustomerManager.Registration();

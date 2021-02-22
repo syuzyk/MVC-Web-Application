@@ -32,6 +32,11 @@ namespace Group8.TravelExperts.Data.Domain
     //Ricky added this code.
     public class BookingDetailsManager
     {
+        /// <summary>
+        /// Get all packages customer has purchased.
+        /// </summary>
+        /// <param name="customerId"></param>
+        /// <returns></returns>
         public static List<PurchaseModel> GetPurchasedPackages(int customerId)
         {
             TravelExpertsContext context = new TravelExpertsContext();
@@ -63,6 +68,11 @@ namespace Group8.TravelExperts.Data.Domain
             return purchasedPackageList;
         }
 
+        /// <summary>
+        /// Get all products a customer has purchased.
+        /// </summary>
+        /// <param name="customerId"></param>
+        /// <returns></returns>
         public static List<PurchaseModel> GetPurchasedProducts(int customerId)
         {
             TravelExpertsContext context = new TravelExpertsContext();
@@ -95,6 +105,12 @@ namespace Group8.TravelExperts.Data.Domain
             return purchasedProductList;
         }
 
+        
+        /// <summary>
+        /// Get customer's amount owing.
+        /// </summary>
+        /// <param name="customerId"></param>
+        /// <returns></returns>
         public static decimal GetTotalOwing(int customerId)
         {
             decimal unpaidBasePrices;
@@ -128,6 +144,10 @@ namespace Group8.TravelExperts.Data.Domain
             return unpaidTotal;
         }
 
+        /// <summary>
+        /// Update ISPAID column to show REFUND REQUESTED
+        /// </summary>
+        /// <param name="bookingDetailsId"></param>
         public static void RequestRefund(int bookingDetailsId)
         {
             TravelExpertsContext context = new TravelExpertsContext();
@@ -141,6 +161,14 @@ namespace Group8.TravelExperts.Data.Domain
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// Add a package record to BookingDetails
+        /// </summary>
+        /// <param name="customerId"></param>
+        /// <param name="pkgName"></param>
+        /// <param name="basePrice"></param>
+        /// <param name="tripStart"></param>
+        /// <param name="tripEnd"></param>
         public static void AddPackageOrder(int customerId, string pkgName, decimal basePrice, DateTime tripStart, DateTime tripEnd)
         {
             TravelExpertsContext context = new TravelExpertsContext();
@@ -182,6 +210,18 @@ namespace Group8.TravelExperts.Data.Domain
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// Add a product to BookingDetails
+        /// </summary>
+        /// <param name="customerId"></param>
+        /// <param name="prodName"></param>
+        /// <param name="supName"></param>
+        /// <param name="destination"></param>
+        /// <param name="basePrice"></param>
+        /// <param name="feeName"></param>
+        /// <param name="feeAmt"></param>
+        /// <param name="tripStart"></param>
+        /// <param name="tripEnd"></param>
         public static void AddProductOrder(int customerId, string prodName, string supName, string destination, decimal basePrice, string feeName, decimal feeAmt, DateTime tripStart, DateTime tripEnd)
         {
             TravelExpertsContext context = new TravelExpertsContext();
@@ -223,6 +263,10 @@ namespace Group8.TravelExperts.Data.Domain
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// Remove an record from BookingDetails
+        /// </summary>
+        /// <param name="bookingDetailsId"></param>
         public static void DeleteOrder(int bookingDetailsId)
         {
             TravelExpertsContext context = new TravelExpertsContext();

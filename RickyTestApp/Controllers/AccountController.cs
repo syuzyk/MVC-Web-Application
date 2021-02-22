@@ -9,9 +9,14 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace RickyTestApp.Controllers
 {
-    //Ricky wrote this code.
+    //Ricky wrote this code unless otherwise specified.
     public class AccountController : Controller
     {
+        /// <summary>
+        /// Login page.
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         public IActionResult Login(string returnUrl = null)
         {
             if (returnUrl != null)
@@ -19,6 +24,11 @@ namespace RickyTestApp.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Takes username/passwrod to authenticate.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> LoginAsync(UserViewModel user)
         {
@@ -57,11 +67,20 @@ namespace RickyTestApp.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        /// <summary>
+        /// View for people who forget password.  Accepts username input (to get security question).
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ForgotPassword()
         {
             return View();
         }
 
+        /// <summary>
+        /// View for people who forget password.  Allows user to input answer to security question.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public ActionResult SecurityQuestion(string username)
         {
             if (username == null)
@@ -87,6 +106,11 @@ namespace RickyTestApp.Controllers
             }
         }
 
+        /// <summary>
+        /// Reroutes user to page depending on whether their answer to security question is correct.
+        /// </summary>
+        /// <param name="attempt"></param>
+        /// <returns></returns>
         public ActionResult GetLink(string attempt)
         {
             if (attempt == null)
@@ -105,6 +129,10 @@ namespace RickyTestApp.Controllers
             }   
         }
 
+        /// <summary>
+        /// View telling user a password reset link has been sent to them.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult LinkSent()
         {
             return View();

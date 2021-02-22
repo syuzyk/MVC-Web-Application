@@ -23,6 +23,10 @@ namespace Group8.TravelExperts.Data.Domain
 
     public class ProductsDisplayedManager
     {
+        /// <summary>
+        /// Gets products being sold to be displayed.
+        /// </summary>
+        /// <returns></returns>
         public static List<PnPViewModel> GetAllProductsDisplayed()
         {
             TravelExpertsContext context = new TravelExpertsContext();

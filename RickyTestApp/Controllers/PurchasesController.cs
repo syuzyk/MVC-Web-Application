@@ -10,10 +10,15 @@ namespace RickyTestApp.Controllers
     //Ricky wrote this code.
     public class PurchasesController : Controller
     {
+        /// <summary>
+        /// View for displaying customer's orders and amount owing.
+        /// </summary>
+        /// <returns></returns>
         [Authorize]
         public IActionResult Index()
         {
-              var packagesPurchased = BookingDetailsManager.GetPurchasedPackages((int)TempData.Peek("CustomerId"));
+            //First get all packages customer has ordered, then pass to ViewData.
+            var packagesPurchased = BookingDetailsManager.GetPurchasedPackages((int)TempData.Peek("CustomerId"));
 
             ViewData["Packages"] = packagesPurchased.Select(pkg => new PurchaseViewModel
             {
@@ -29,6 +34,7 @@ namespace RickyTestApp.Controllers
                 TripStart = pkg.TripStart
             });
 
+            //Then get all products customer has ordered, then pass to ViewData.
             var productsPurchased = BookingDetailsManager.GetPurchasedProducts((int)TempData.Peek("CustomerId"));
 
             ViewData["Products"] = productsPurchased.Select(prod => new PurchaseViewModel
@@ -45,19 +51,25 @@ namespace RickyTestApp.Controllers
                 TripStart = prod.TripStart
             });
 
+            //Then calculate customer's amount owing, and pass to TempData.
             TempData["Amount Owing"] = BookingDetailsManager.GetTotalOwing((int)TempData.Peek("CustomerId"));
 
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Add(PurchaseModel purchase)
-        {
-            return View();
-        }
-
+        /// <summary>
+        /// Remove a product record from BookingsDetails
+        /// </summary>
+        /// <param name="bookingDetailsId"></param>
+        /// <param name="prodName"></param>
+        /// <param name="supName"></param>
+        /// <param name="tripStart"></param>
+        /// <returns></returns>
         public ActionResult CancelProductOrder (int bookingDetailsId, string prodName, string supName, DateTime tripStart)
         {
+            //Calculate number of days between today and trip start date.
+            //If under 4 days, don't allwow cancel.
+            //4 days, because: if trip starts Monday, don't allow user to cancel on Friday night.
             DateTime today = DateTime.Today;
             int daysUntilTripStart = (tripStart - today).Days;
             if (daysUntilTripStart < 4)
@@ -79,8 +91,18 @@ namespace RickyTestApp.Controllers
             return RedirectToAction("Index", "Purchases");
         }
 
+        /// <summary>
+        /// Remove a package record from BookingsDetails
+        /// </summary>
+        /// <param name="bookingDetailsId"></param>
+        /// <param name="pkgName"></param>
+        /// <param name="tripStart"></param>
+        /// <returns></returns>
         public ActionResult CancelPackageOrder(int bookingDetailsId, string pkgName, DateTime tripStart)
         {
+            //Calculate number of days between today and trip start date.
+            //If under 4 days, don't allwow cancel.
+            //4 days, because: if trip starts Monday, don't allow user to cancel on Friday night.
             DateTime today = DateTime.Today;
             int daysUntilTripStart = (tripStart - today).Days;
             if (daysUntilTripStart < 4)
@@ -102,6 +124,11 @@ namespace RickyTestApp.Controllers
             return RedirectToAction("Index", "Purchases");
         }
 
+        /// <summary>
+        /// Changes the status of ISPAID to REFUND REQUESTED
+        /// </summary>
+        /// <param name="bookingDetailsId"></param>
+        /// <returns></returns>
         public ActionResult RequestRefund(int bookingDetailsId)
         {
             try

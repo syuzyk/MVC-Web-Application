@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Group8.TravelExperts.Data.Domain
 {
+    /// <summary>
+    /// Model for pulling security question info.
+    /// </summary>
     public class SecurityQuestionViewModel
     {
         public string SecurityQuestion1 { get; set; }
