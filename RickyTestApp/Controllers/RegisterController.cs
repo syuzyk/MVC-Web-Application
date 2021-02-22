@@ -51,7 +51,34 @@ namespace RickyTestApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult RegisterDetails(Customer c)
         {
-            
+            List<SelectListItem> securityQuestions = new List<SelectListItem>()
+                {
+                    new SelectListItem
+                    {
+                        Text = "What is your mother's maiden name?",
+                        Value = "What is your mother's maiden name?"
+                    },
+                    new SelectListItem
+                    {
+                        Text = "Where did you attend high school?",
+                        Value = "Where did you attend high school?"
+                    },
+                    new SelectListItem
+                    {
+                        Text = "Why is Eric always dressed so nicely?",
+                        Value = "Why is Eric always dressed so nicely?"
+                    },
+                    new SelectListItem
+                    {
+                        Text = "What is your favourite TV show?",
+                        Value = "What is your favourite TV show?"
+                    }
+                };
+
+            ViewBag.SecurityQuestions = securityQuestions;
+
+            if (ModelState.IsValid)
+            {
                 try
                 {
                     var context = new TravelExpertsContext();
@@ -62,34 +89,13 @@ namespace RickyTestApp.Controllers
                 }
                 catch
                 {
-                    List<SelectListItem> securityQuestions = new List<SelectListItem>()
-                    {
-                        new SelectListItem
-                        {
-                            Text = "What is your mother's maiden name?",
-                            Value = "What is your mother's maiden name?"
-                        },
-                        new SelectListItem
-                        {
-                            Text = "Where did you attend high school?",
-                            Value = "Where did you attend high school?"
-                        },
-                        new SelectListItem
-                        {
-                            Text = "Why is Eric always dressed so nicely?",
-                            Value = "Why is Eric always dressed so nicely?"
-                        },
-                        new SelectListItem
-                        {
-                            Text = "What is your favourite TV show?",
-                            Value = "What is your favourite TV show?"
-                        }
-                    };
-                    ViewBag.SecurityQuestions = securityQuestions;
-                return View();
+                    return View();
                 }
-            
-
+            }
+            else
+            {
+                return View();
+            }
         }
 
        [Authorize]
