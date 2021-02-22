@@ -29,17 +29,17 @@ namespace Group8.TravelExperts.Data.Domain
         [MaxLength(2)]
         public string CustProv { get; set; }
         [Required(ErrorMessage = "Please enter your Canadian Postal Code.")]
-        [RegularExpression(@"^[A-Za-z]\d[A-Za-z] ?\d[A-Za-z]\d$", ErrorMessage = "Please enter a valid Canadian Postal Code. For example: A1B 2C3")]
+        [RegularExpression(@"^[A-Za-z]\d[A-Za-z] ?\d[A-Za-z]\d$", ErrorMessage = "Please enter a valid Canadian Postal Code. For example: A1B 2C3")] // ~ TS
         public string CustPostal { get; set; }
         [Required(ErrorMessage = "Please enter your phone number.")]
-        [RegularExpression(@"^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$", ErrorMessage = "Please enter a valid phone number. For example: (555)-555-5555")]
+        [RegularExpression(@"^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$", ErrorMessage = "Please enter a valid phone number. For example: (555)-555-5555")] // ~ TS
         public string CustHomePhone { get; set; }
 
         public string CustBusPhone { get; set; }
 
         public string CustFax { get; set; }
 
-        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$", ErrorMessage = "Please enter a valid email address. For example: Example@email.com")]
+        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$", ErrorMessage = "Please enter a valid email address. For example: Example@email.com")] // ~ TS
         public string CustEmail { get; set; }
         public int? AgentId { get; set; }
 
@@ -88,7 +88,6 @@ namespace Group8.TravelExperts.Data.Domain
             u.CustBusPhone = c.CustBusPhone;
             u.CustFax = c.CustFax;
             u.CustEmail = c.CustEmail;
-
 
             context.SaveChanges();
         }
