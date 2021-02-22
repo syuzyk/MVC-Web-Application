@@ -137,13 +137,13 @@ namespace RickyTestApp.Controllers
         [Authorize]
         public ActionResult EditAuth1(int id,string user,string oldp,string newp)
         {
-            if (CustomersAuthenticationManager.UsernameIsTaken(user) == true)
-            {
-                ViewBag.Message = "User Name " + user + " already exists";
-                return View();
-            }
-            else
-            {
+            //if (CustomersAuthenticationManager.UsernameIsTaken(user) == true)
+            //{
+            //    ViewBag.Message = "User Name " + user + " already exists";
+            //    return View();
+            //}
+            //else
+            //{
                 var msg = "<h5 ";
                 
                 if (oldp != "" && newp != "")
@@ -160,7 +160,7 @@ namespace RickyTestApp.Controllers
                     msg += "style='color:red;'> password can't be empty</p>";
                     return Content(msg);
                 }
-            }
+            //}
         }
     }
 
