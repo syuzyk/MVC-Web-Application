@@ -13,8 +13,11 @@
             <form asp-action="Login">
                 <p>@Html.Label((string)ViewBag.log)</p>
 
-                <h3>Login</h3>
+                
                 <table class="table col-4">
+                    <tr>
+                        <td colspan="2"><h3>Login</h3></td>
+                    </tr>
                     <tr>
                         <td>Username:</td>
                         <td><input type="text" asp-for="Username" /></td>
@@ -24,7 +27,10 @@
                         <td><input type="password" asp-for="Password" /></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><input type="submit" value="Authenticate" class="btn btn-primary" /></td>
+                        <td colspan="2"><input type="submit" value="Log in" class="btn btn-primary" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">@Html.ActionLink("Forgot password?", "ForgotPassword") <br /> @Html.ActionLink("Create an account", "RegisterDetails", "Register")</td>
                     </tr>
                 </table>
             </form>

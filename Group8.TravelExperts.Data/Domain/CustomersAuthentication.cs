@@ -63,7 +63,12 @@ namespace Group8.TravelExperts.Data.Domain
 
             CustomersAuthentication target = context.CustomersAuthentications.SingleOrDefault(c => c.Username == username);
 
-            string question = target.SecurityQuestion1;
+            string question;
+
+            if (target == null)
+                question = null;
+            else
+                question = target.SecurityQuestion1;
 
             return question;
         }

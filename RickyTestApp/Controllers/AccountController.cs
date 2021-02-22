@@ -63,28 +63,52 @@ namespace RickyTestApp.Controllers
             return View();
         }
 
-        //[HttpPost]
         public ActionResult SecurityQuestion(string username)
         {
-            string question = CustomersAuthenticationManager.GetSecurityQuestion(username);
-            TempData["Username"] = username;
-            TempData["Security Question"] = question;
-            return View();
+            if (username == null)
+            {
+                TempData["UsernameError"] = "<tr style='color:red'><td>Please enter a username.</td></tr>"; 
+                return RedirectToAction("ForgotPassword");
+            }
+            else
+            {
+                string question = CustomersAuthenticationManager.GetSecurityQuestion(username);
+
+                if (question == null)
+                {
+                    TempData["UsernameError"] = "<tr style='color:red'><td>Invalid username.<br />Please check your spelling.</td></tr>";
+                    return RedirectToAction("ForgotPassword");
+                }
+                else
+                {
+                    TempData["Username"] = username;
+                    TempData["Security Question"] = question;
+                    return View();
+                }
+            }
         }
 
-        [HttpPost]
         public ActionResult GetLink(string attempt)
         {
-            if (CustomersAuthenticationManager.SecurityQuestionAnsweredCorrect((string)TempData.Peek("Username"), attempt) == true)
+            if (attempt == null)
+            {
+                TempData["AnswerResponse"] = "<tr style='color:red'><td>Please enter an answer.</td></tr>";
+                return RedirectToAction("SecurityQuestion", new { username = (string)TempData.Peek("Username") });
+            }
+            else if (CustomersAuthenticationManager.SecurityQuestionAnsweredCorrect((string)TempData.Peek("Username"), attempt) == true)
             {
                 return RedirectToAction("LinkSent", "Account");
             }
             else
             {
-                TempData["msg"] = "Incorrect answer; please try again.";
+                TempData["AnswerResponse"] = "<tr style='color:red'><td>Incorrect answer; please try again.</td></tr>";
                 return RedirectToAction("SecurityQuestion", new { username = (string)TempData.Peek("Username") });
-            }
-                
+            }   
+        }
+
+        public ActionResult LinkSent()
+        {
+            return View();
         }
     }
 }
