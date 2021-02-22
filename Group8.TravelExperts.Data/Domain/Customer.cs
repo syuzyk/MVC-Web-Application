@@ -39,7 +39,7 @@ namespace Group8.TravelExperts.Data.Domain
         public string CustBusPhone { get; set; }
         
         public string CustFax { get; set; }
-        [Required(ErrorMessage = "PLEASE ENTER YOUR EMAIL ADDRESS")]
+
         [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$", ErrorMessage = "PLEASE ENTER A VAILD EMAIL ADDRESS")]                                                                                                         
         public string CustEmail { get; set; }
         public int? AgentId { get; set; }
