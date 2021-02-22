@@ -102,11 +102,11 @@ namespace RickyTestApp.Controllers
             {
                 u.Username = user;
                 u.Password = newp;
-                msg += "style='color:blue;'> passwpod changed successfully !!</h5>";
+                msg += "style='color:blue;'> Password changed successfully!</h5>";
             }
             else
             {
-                msg += "style='color:red;'> Password Update Failes !! old passwpod is wrong</p>";
+                msg += "style='color:red;'> Current password was entered incorrectly. Password was not updated.</p>";
             }
             context.SaveChanges();
             return Content(msg);

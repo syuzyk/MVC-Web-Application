@@ -14,16 +14,22 @@
                     <table class="table" id="regtable" border="0" cellspacing="0" cellpadding="0">
                         <tr>
                             <td colspan="3">
+                                <h6>Make your changes, then click the button at the bottom to save. Fields marked with a '*' are required:</h6>
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             </td>
                         </tr>
 
                         <tr>
                             @*<td>
-                                <label asp-for="CustomerId" class="control-label"></label>
-                                <input asp-for="CustomerId" class="form-control" readonly />
-                                <span asp-validation-for="CustomerId" class="text-danger"></span>
-                            </td>*@
+                <label asp-for="CustomerId" class="control-label"></label>
+                <input asp-for="CustomerId" class="form-control" readonly />
+                <span asp-validation-for="CustomerId" class="text-danger"></span>
+            </td>*@
                             <td>
                                 <label asp-for="CustFirstName" class="control-label">First Name*</label>
                                 <input asp-for="CustFirstName" class="form-control" />
