@@ -16,9 +16,7 @@ namespace RickyTestApp.Controllers
 
         public ActionResult RegisterDetails()
         {
-            var context = new TravelExpertsContext();
-            var cutomers = context.Customers.Include(c => c.CustomersAuthentication).ToList();
-            ViewBag.cust = cutomers;
+            ViewBag.cust = CustomerManager.Registration();
             List<SelectListItem> securityQuestions = new List<SelectListItem>()
             {
                 new SelectListItem
@@ -81,9 +79,8 @@ namespace RickyTestApp.Controllers
             {
                 try
                 {
-                    var context = new TravelExpertsContext();
-                    context.Customers.Add(c);
-                    context.SaveChanges();
+                    CustomerManager.Add(c);
+                    
                     TempData["LoginPrompt"] = "<script>alert('Your account has been created. You may log in with your username and password.');</script>";
                     return RedirectToAction("Login", "Account");
                 }
@@ -101,8 +98,8 @@ namespace RickyTestApp.Controllers
        [Authorize]
         public ActionResult Edit(int id)
         {
-            var context = new TravelExpertsContext();
-            var cust = context.Customers.Include(ca => ca.CustomersAuthentication).SingleOrDefault(c => c.CustomerId == id);
+            Customer cust = CustomerManager.GetAuthenticatedCustomerByID(id);
+            
             return View(cust);
         }
 
@@ -116,22 +113,8 @@ namespace RickyTestApp.Controllers
             {
                 try
                 {
-                    var context = new TravelExpertsContext();
-                    var u = context.Customers.SingleOrDefault(cp => cp.CustomerId == id);
-
-                    u.CustFirstName = c.CustFirstName;
-                    u.CustLastName = c.CustLastName;
-                    u.CustAddress = c.CustAddress;
-                    u.CustCity = c.CustCity;
-                    u.CustProv = c.CustProv;
-                    u.CustPostal = c.CustPostal;
-                    u.CustHomePhone = c.CustHomePhone;
-                    u.CustBusPhone = c.CustBusPhone;
-                    u.CustFax = c.CustFax;
-                    u.CustEmail = c.CustEmail;
-
-
-                    context.SaveChanges();
+                    CustomerManager.Update(id, c);
+                    
                     return RedirectToAction("Index", "Home");
                 }
 
@@ -148,45 +131,34 @@ namespace RickyTestApp.Controllers
         [Authorize]
         public ActionResult EditAuth(int id)
         {
-            var context = new TravelExpertsContext();
-            var cust = context.CustomersAuthentications.SingleOrDefault(c => c.CustomerId == id);
+            CustomersAuthentication cust = CustomersAuthenticationManager.GetByCustomerId(id);
             return View(cust);
         }
         [Authorize]
         public ActionResult EditAuth1(int id,string user,string oldp,string newp)
         {
-            var context = new TravelExpertsContext();
-            var ca = context.CustomersAuthentications.ToList();
-            var usernames = ca.Select(a => a.Username).Distinct();
-            if (usernames.Contains(user, StringComparer.OrdinalIgnoreCase))
+            if (CustomersAuthenticationManager.UsernameIsTaken(user) == true)
             {
                 ViewBag.Message = "User Name " + user + " already exists";
                 return View();
             }
             else
             {
-
-                var u = context.CustomersAuthentications.SingleOrDefault(cp => cp.CustomerId == id);
                 var msg = "<h5 ";
+                
                 if (oldp != "" && newp != "")
                 {
-                    if (u.Password == oldp)
-                    {
-                        u.Username = user;
-                        u.Password = newp;
+                    if (CustomersAuthenticationManager.CheckOldPasswordThenUpdate(id, user, oldp, newp) == true)
                         msg += "style='color:blue;'> Password changed successfully!</h5>";
-                    }
                     else
-                    {
                         msg += "style='color:red;'> Current password was entered incorrectly. Password was not updated.</p>";
-                    }
-                    context.SaveChanges();
+                    
                     return Content(msg);
                 }
                 else
                 {
                     msg += "style='color:red;'> password can't be empty</p>";
-                    return View();
+                    return Content(msg);
                 }
             }
         }

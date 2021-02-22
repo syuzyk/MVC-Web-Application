@@ -57,5 +57,33 @@ namespace RickyTestApp.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme); 
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SecurityQuestion(string username)
+        {
+            TempData["Security Question"] = CustomersAuthenticationManager.GetSecurityQuestion(username);
+            TempData["Username"] = username;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult GetLink(string sqAnswer1)
+        {
+            if (CustomersAuthenticationManager.SecurityQuestionAnsweredCorrect((string)TempData.Peek("Username"), sqAnswer1) == true)
+            {
+                return RedirectToAction("LinkSent", "Account");
+            }
+            else
+            {
+                TempData["msg"] = "Incorrect answer; please try again.";
+                return RedirectToAction("SecurityQuestion", "Account");
+            }
+                
+        }
     }
 }

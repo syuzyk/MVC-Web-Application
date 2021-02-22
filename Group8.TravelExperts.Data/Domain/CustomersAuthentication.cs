@@ -56,5 +56,59 @@ namespace Group8.TravelExperts.Data.Domain
             else
                 return null;  
         }
+
+        public static string GetSecurityQuestion(string username)
+        {
+            TravelExpertsContext context = new TravelExpertsContext();
+
+            CustomersAuthentication target = context.CustomersAuthentications.SingleOrDefault(c => c.Username == username);
+
+            return target.SecurityQuestion1;
+        }
+
+        public static bool SecurityQuestionAnsweredCorrect(string username, string answer)
+        {
+            TravelExpertsContext context = new TravelExpertsContext();
+            CustomersAuthentication target = context.CustomersAuthentications.SingleOrDefault(c => c.Username == username);
+
+            if (target.SQAnswer1 == answer)
+                return true;
+            else
+                return false;
+        }
+
+        public static CustomersAuthentication GetByCustomerId(int id)
+        {
+            var context = new TravelExpertsContext();
+            var cust = context.CustomersAuthentications.SingleOrDefault(c => c.CustomerId == id);
+            
+            return cust;
+        }
+
+        public static bool UsernameIsTaken(string user)
+        {
+            var context = new TravelExpertsContext();
+            var ca = context.CustomersAuthentications.ToList();
+            var usernames = ca.Select(a => a.Username).Distinct();
+            if (usernames.Contains(user, StringComparer.OrdinalIgnoreCase))
+                return true;
+            else
+                return false;
+        }
+
+        public static bool CheckOldPasswordThenUpdate(int id, string user, string oldp, string newp)
+        {
+            var context = new TravelExpertsContext();
+            var u = context.CustomersAuthentications.SingleOrDefault(cp => cp.CustomerId == id);
+            if (u.Password == oldp)
+            {
+                u.Username = user;
+                u.Password = newp;
+                context.SaveChanges();
+                return true;
+            }
+            else
+                return false;
+        }
     }         
 }

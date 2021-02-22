@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 
 
@@ -54,6 +56,45 @@ namespace Group8.TravelExperts.Data.Domain
 
     public class CustomerManager
     {
-        //public static void CheckIfUsernameUnique()
+        public static List<Customer> Registration()
+        {
+            var context = new TravelExpertsContext();
+            var customers = context.Customers.Include(c => c.CustomersAuthentication).ToList();
+            return customers;
+        }
+
+        public static void Add(Customer c)
+        {
+            var context = new TravelExpertsContext();
+            context.Customers.Add(c);
+            context.SaveChanges();
+        }
+
+        public static Customer GetAuthenticatedCustomerByID(int id)
+        {
+            var context = new TravelExpertsContext();
+            var cust = context.Customers.Include(ca => ca.CustomersAuthentication).SingleOrDefault(c => c.CustomerId == id);
+            return cust;
+        }
+
+        public static void Update(int id, Customer c)
+        {
+            var context = new TravelExpertsContext();
+            var u = context.Customers.SingleOrDefault(cp => cp.CustomerId == id);
+
+            u.CustFirstName = c.CustFirstName;
+            u.CustLastName = c.CustLastName;
+            u.CustAddress = c.CustAddress;
+            u.CustCity = c.CustCity;
+            u.CustProv = c.CustProv;
+            u.CustPostal = c.CustPostal;
+            u.CustHomePhone = c.CustHomePhone;
+            u.CustBusPhone = c.CustBusPhone;
+            u.CustFax = c.CustFax;
+            u.CustEmail = c.CustEmail;
+
+
+            context.SaveChanges();
+        }
     }
 }
