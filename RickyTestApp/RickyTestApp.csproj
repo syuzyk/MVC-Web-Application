@@ -12,4 +12,8 @@
     <ProjectReference Include="..\Group8.TravelExperts.Data\Group8.TravelExperts.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\images\2.png" />
+  </ItemGroup>
+
 </Project>

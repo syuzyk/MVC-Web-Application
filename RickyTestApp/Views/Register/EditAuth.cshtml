@@ -15,13 +15,13 @@
             <form asp-action="EditAuth">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                   
+
                     <input id="uxid" asp-for="CustomerId" class="form-control" hidden />
-                   
+
                 </div>
                 <div class="form-group">
                     <label asp-for="Username" class="control-label">Enter New Username</label>
-                    <input id="uxuser" asp-for="Username" class="form-control"  required/>
+                    <input id="uxuser" asp-for="Username" class="form-control" required />
                     <span asp-validation-for="Username" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -34,6 +34,12 @@
                     <input id="uxnewpass" type="password" class="form-control" required />
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
+                <div class="form-group">
+                    <label>Confirm New Password</label>
+                    <input id="uxconfirmnewpass" type="password" class="form-control" required />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+                <hr />
                 <div class="form-group">
                     <input type="button" id="uxreset" value="Update Username & Password" class="btn btn-primary" />
                 </div>

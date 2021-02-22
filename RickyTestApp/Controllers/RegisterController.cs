@@ -135,7 +135,7 @@ namespace RickyTestApp.Controllers
             return View(cust);
         }
         [Authorize]
-        public ActionResult EditAuth1(int id,string user,string oldp,string newp)
+        public ActionResult EditAuth1(int id,string user,string oldp,string newp,string confnewp)
         {
             //if (CustomersAuthenticationManager.UsernameIsTaken(user) == true)
             //{
