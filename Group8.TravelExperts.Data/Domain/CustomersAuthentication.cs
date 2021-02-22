@@ -63,7 +63,9 @@ namespace Group8.TravelExperts.Data.Domain
 
             CustomersAuthentication target = context.CustomersAuthentications.SingleOrDefault(c => c.Username == username);
 
-            return target.SecurityQuestion1;
+            string question = target.SecurityQuestion1;
+
+            return question;
         }
 
         public static bool SecurityQuestionAnsweredCorrect(string username, string answer)

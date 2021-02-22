@@ -63,25 +63,26 @@ namespace RickyTestApp.Controllers
             return View();
         }
 
-        [HttpPost]
+        //[HttpPost]
         public ActionResult SecurityQuestion(string username)
         {
-            TempData["Security Question"] = CustomersAuthenticationManager.GetSecurityQuestion(username);
+            string question = CustomersAuthenticationManager.GetSecurityQuestion(username);
             TempData["Username"] = username;
+            TempData["Security Question"] = question;
             return View();
         }
 
         [HttpPost]
-        public ActionResult GetLink(string sqAnswer1)
+        public ActionResult GetLink(string attempt)
         {
-            if (CustomersAuthenticationManager.SecurityQuestionAnsweredCorrect((string)TempData.Peek("Username"), sqAnswer1) == true)
+            if (CustomersAuthenticationManager.SecurityQuestionAnsweredCorrect((string)TempData.Peek("Username"), attempt) == true)
             {
                 return RedirectToAction("LinkSent", "Account");
             }
             else
             {
                 TempData["msg"] = "Incorrect answer; please try again.";
-                return RedirectToAction("SecurityQuestion", "Account");
+                return RedirectToAction("SecurityQuestion", new { username = (string)TempData.Peek("Username") });
             }
                 
         }

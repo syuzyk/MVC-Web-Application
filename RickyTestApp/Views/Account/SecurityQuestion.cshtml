@@ -1,4 +1,4 @@
-﻿@model Group8.TravelExperts.Data.Domain.CustomersAuthentication
+﻿@model Group8.TravelExperts.Data.Domain.SecurityQuestionViewModel
 @{
     ViewData["Title"] = "SecurityQuestion";
 }
@@ -10,10 +10,13 @@
                 <h3>@TempData.Peek("Security Question")</h3>
                 <table class="table col-4">
                     <tr>
-                        <td><input type="text" asp-for="SQAnswer1" /></td>
+                        <td><input type="text" asp-for="Attempt" /></td>
+                        <span asp-validation-for="Attempt" class="text-danger"></span>
                     </tr>
                     <tr>
-                        <td colspan="2"><input type="submit" value="Submit" class="btn btn-primary" /></td>
+                        <td colspan="2">
+                        <input type="submit" value="Submit" class="btn btn-primary" />
+                        </td>
                     </tr>
                 </table>
             </form>
