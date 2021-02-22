@@ -155,12 +155,9 @@ namespace RickyTestApp.Controllers
             }
             else
             {
-                msg += "style='color:red;'>confirm password is wrnog | Password was not updated.</p>";
+                msg += "style='color:red;'>Confirm password does not match | Password was not updated.</p>";
             }
             return Content(msg);
-
-
-
         }
     }
 }
