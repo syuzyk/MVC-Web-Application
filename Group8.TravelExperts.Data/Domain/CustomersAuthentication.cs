@@ -98,13 +98,12 @@ namespace Group8.TravelExperts.Data.Domain
                 return false;
         }
 
-        public static bool CheckOldPasswordThenUpdate(int id, string user, string oldp, string newp, string confnewp)
+        public static bool CheckOldPasswordThenUpdate(int id, string user, string oldp, string newp)
         {
             var context = new TravelExpertsContext();
             var u = context.CustomersAuthentications.SingleOrDefault(cp => cp.CustomerId == id);
-          if(newp != "" && newp != null && confnewp != "" && confnewp != null)
-            {
-                if (u.Password == oldp && newp == confnewp)
+         
+                if (u.Password == oldp)
                 {
                     u.Username = user;
                     u.Password = newp;
@@ -114,11 +113,7 @@ namespace Group8.TravelExperts.Data.Domain
                 }
                 else
                     return false;
-            }
-            else
-            {
-                return false;
-            }
+           
         }
     }         
 }

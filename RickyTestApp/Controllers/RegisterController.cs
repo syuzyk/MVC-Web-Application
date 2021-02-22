@@ -42,11 +42,11 @@ namespace RickyTestApp.Controllers
             };
             ViewBag.SecurityQuestions = securityQuestions;
             return View();
-            
+
         }
 
         [HttpPost]
-        
+
         public ActionResult RegisterDetails(Customer c)
         {
             List<SelectListItem> securityQuestions = new List<SelectListItem>()
@@ -80,7 +80,7 @@ namespace RickyTestApp.Controllers
                 try
                 {
                     CustomerManager.Add(c);
-                    
+
                     TempData["LoginPrompt"] = "<script>alert('Your account has been created. You may log in with your username and password.');</script>";
                     return RedirectToAction("Login", "Account");
                 }
@@ -95,26 +95,26 @@ namespace RickyTestApp.Controllers
             }
         }
 
-       [Authorize]
+        [Authorize]
         public ActionResult Edit(int id)
         {
             Customer cust = CustomerManager.GetAuthenticatedCustomerByID(id);
-            
+
             return View(cust);
         }
 
 
-       
+
         [HttpPost]
         [Authorize]
-        public ActionResult Edit(int id,Customer c)
+        public ActionResult Edit(int id, Customer c)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
                     CustomerManager.Update(id, c);
-                    
+
                     return RedirectToAction("Index", "Home");
                 }
 
@@ -127,7 +127,7 @@ namespace RickyTestApp.Controllers
             {
                 return View();
             }
-            }
+        }
         [Authorize]
         public ActionResult EditAuth(int id)
         {
@@ -135,7 +135,7 @@ namespace RickyTestApp.Controllers
             return View(cust);
         }
         [Authorize]
-        public ActionResult EditAuth1(int id,string user,string oldp,string newp,string confnewp)
+        public ActionResult EditAuth1(int id, string user, string oldp, string newp, string confnewp)
         {
             //if (CustomersAuthenticationManager.UsernameIsTaken(user) == true)
             //{
@@ -144,26 +144,28 @@ namespace RickyTestApp.Controllers
             //}
             //else
             //{
-                var msg = "<p ";
-                try
-                {
-                    if (CustomersAuthenticationManager.CheckOldPasswordThenUpdate(id, user, oldp, newp) == true)
-                        msg += "style='color:blue;'> Password changed successfully!</p>";
-                    else
-                        msg += "style='color:red;'> Current password was entered incorrectly. Password was not updated.</p>";
+            var msg = "<p ";
 
-                    return Content(msg);
-                }
-                catch
-                {
-                    
-                    return View();
-                } 
-          
+            if (newp == confnewp)
+            {
+                if (CustomersAuthenticationManager.CheckOldPasswordThenUpdate(id, user, oldp, newp) == true)
+                    msg += "style='color:blue;'> Password changed successfully!</p>";
+                else
+                    msg += "style='color:red;'> Current password was entered incorrectly| Password was not updated.</p>";
+            }
+            else
+            {
+                msg += "style='color:red;'>confirm password is wrnog | Password was not updated.</p>";
+            }
+            return Content(msg);
+
+
+
         }
     }
+}
 
 
    
-}
+
 
