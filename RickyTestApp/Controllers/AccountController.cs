@@ -49,6 +49,7 @@ namespace RickyTestApp.Controllers
                 return Redirect(TempData["ReturnUrl"].ToString());
         }
 
+        //Handles the logout ~ TS
         public async Task<IActionResult> LogoutAsync(UserViewModel user)
         {
             TempData.Clear();
