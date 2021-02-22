@@ -12,19 +12,19 @@ namespace Group8.TravelExperts.Data.Domain
     public partial class CustomersAuthentication
     {
         public int CustomerId { get; set; }
-        [Required(ErrorMessage = "PLEASE ENTER A USERNAME")]
-        [StringLength(25, ErrorMessage = "PLEASE ENTER USERNAME WITH LESS THAN 25 CHARECTER AND MORE THAN 5 CHARECTER")]
-        [MinLength(5, ErrorMessage = "PLEASE ENTER USERNAME WITH LESS THAN 25 CHARECTER AND MORE THAN 5 CHARECTER")]
+        [Required(ErrorMessage = "Please enter a username.")]
+        [StringLength(25, ErrorMessage = "Please enter a username between 5 and 25 characters.")]
+        [MinLength(5, ErrorMessage = "Please enter a username between 5 and 25 characters.")]
         public string Username { get; set; }
-        [Required(ErrorMessage = "PLEASE ENTER A PASSWORD")]
+        [Required(ErrorMessage = "Please enter a password.")]
         [Display(Name = "Password")]
         public string Password { get; set; }
         [NotMapped]
-        [Required(ErrorMessage = "PLEASE RE-ENTER YOUR PASSWORD")]
-        [Compare("Password", ErrorMessage = "Passwords do not match. Try again.")]
+        [Required(ErrorMessage = "Please re-enter your password.")]
+        [Compare("Password", ErrorMessage = "Passwords do not match. Please try again.")]
         public string ConfirmPassword { get; set; }
         public string SecurityQuestion1 { get; set; }
-        [Required(ErrorMessage = "Please submit an answer")]
+        [Required(ErrorMessage = "Please submit an answer.")]
         public string SQAnswer1 { get; set; }
         public virtual Customer Customer { get; set; }
     }

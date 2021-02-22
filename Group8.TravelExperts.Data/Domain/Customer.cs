@@ -21,29 +21,29 @@ namespace Group8.TravelExperts.Data.Domain
         }
 
         public int CustomerId { get; set; }
-        [Required(ErrorMessage = "PLEASE ENTER YOUR FIRST NAME")]
+        [Required(ErrorMessage = "Please enter your first name.")]
         public string CustFirstName { get; set; }
-        [Required(ErrorMessage = "PLEASE ENTER YOUR LAST NAME")]
+        [Required(ErrorMessage = "Please enter you last name.")]
         public string CustLastName { get; set; }
-        [Required(ErrorMessage = "PLEASE ENTER YOUR ADDRESS")]
+        [Required(ErrorMessage = "Please enter your address.")]
         public string CustAddress { get; set; }
-        [Required(ErrorMessage = "PLEASE ENTER YOUR CITY")]
+        [Required(ErrorMessage = "Please enter your city.")]
         public string CustCity { get; set; }
-        [Required(ErrorMessage = "PLEASE ENTER YOUR PROVINCE")]
+        [Required(ErrorMessage = "Please enter your Province code.")]
         [MaxLength(2)]
         public string CustProv { get; set; }
-        [Required(ErrorMessage = "PLEASE ENTER YOUR POSTAL CODE")]
-        [RegularExpression(@"^[A-Za-z]\d[A-Za-z] ?\d[A-Za-z]\d$", ErrorMessage = "PLEASE ENTER A VAILD POSTAL CODE")]
+        [Required(ErrorMessage = "Please enter your Canadian Postal Code.")]
+        [RegularExpression(@"^[A-Za-z]\d[A-Za-z] ?\d[A-Za-z]\d$", ErrorMessage = "Please enter a valid Canadian Postal Code. For example: A1B 2C3")]
         public string CustPostal { get; set; }
-        [Required(ErrorMessage = "PLEASE ENTER YOUR PHONE NUMBER")]
-        [RegularExpression(@"^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$", ErrorMessage = "PLEASE ENTER A VAILD PHONE NUMBER")]
+        [Required(ErrorMessage = "Please enter your phone number.")]
+        [RegularExpression(@"^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$", ErrorMessage = "Please enter a valid phone number. For example: (555)-555-5555")]
         public string CustHomePhone { get; set; }
 
         public string CustBusPhone { get; set; }
 
         public string CustFax { get; set; }
 
-        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$", ErrorMessage = "PLEASE ENTER A VAILD EMAIL ADDRESS")]
+        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$", ErrorMessage = "Please enter a valid email address. For example: Example@email.com")]
         public string CustEmail { get; set; }
         public int? AgentId { get; set; }
 
