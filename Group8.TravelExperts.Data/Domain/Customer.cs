@@ -28,6 +28,7 @@ namespace Group8.TravelExperts.Data.Domain
         [Required(ErrorMessage = "PLEASE ENTER YOUR CITY")]
         public string CustCity { get; set; }
         [Required(ErrorMessage = "PLEASE ENTER YOUR PROVINCE")]
+        [MaxLength(2)]
         public string CustProv { get; set; }
         [Required(ErrorMessage = "PLEASE ENTER YOUR POSTAL CODE")]
         [RegularExpression(@"^[A-Za-z]\d[A-Za-z] ?\d[A-Za-z]\d$", ErrorMessage = "PLEASE ENTER A VAILD POSTAL CODE")]

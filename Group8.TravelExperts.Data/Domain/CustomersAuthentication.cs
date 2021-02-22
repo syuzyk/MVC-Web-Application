@@ -13,6 +13,8 @@ namespace Group8.TravelExperts.Data.Domain
     {
         public int CustomerId { get; set; }
         [Required(ErrorMessage = "PLEASE ENTER A USERNAME")]
+        [StringLength(25, ErrorMessage = "PLEASE ENTER USERNAME WITH LESS THAN 25 CHARECTER AND MORE THAN 5 CHARECTER")]
+        [MinLength(5, ErrorMessage = "PLEASE ENTER USERNAME WITH LESS THAN 25 CHARECTER AND MORE THAN 5 CHARECTER")]
         public string Username { get; set; }
         [Required(ErrorMessage = "PLEASE ENTER A PASSWORD")]
         [Display(Name = "Password")]
