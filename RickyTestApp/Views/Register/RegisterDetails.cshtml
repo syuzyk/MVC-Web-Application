@@ -19,7 +19,7 @@
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             </td>
                         </tr>
-                        
+
                         <tr>
                             <td>
                                 <label id="name" asp-for="CustFirstName" class="control-label">First Name*</label>
@@ -61,17 +61,17 @@
                         <tr>
                             <td style="padding-bottom: 20px;">
                                 <label asp-for="CustHomePhone" class="control-label">Home Phone*</label>
-                                <input asp-for="CustHomePhone" class="form-control" id="regCustHomePhone"/>
+                                <input asp-for="CustHomePhone" class="form-control" id="regCustHomePhone" />
                                 <span asp-validation-for="CustHomePhone" class="text-danger"></span>
                             </td>
                             <td>
                                 <label asp-for="CustBusPhone" class="control-label">Business Phone</label>
-                                <input asp-for="CustBusPhone" class="form-control" id="regCustBusPhone"/>
+                                <input asp-for="CustBusPhone" class="form-control" id="regCustBusPhone" />
                                 <span asp-validation-for="CustBusPhone" class="text-danger"></span>
                             </td>
                             <td>
                                 <label asp-for="CustFax" class="control-label">Fax Number</label>
-                                <input asp-for="CustFax" class="form-control" id="regCustFax"/>
+                                <input asp-for="CustFax" class="form-control" id="regCustFax" />
                                 <span asp-validation-for="CustFax" class="text-danger"></span>
                             </td>
                         </tr>
@@ -100,7 +100,21 @@
                                 <span asp-validation-for="CustomersAuthentication.ConfirmPassword" class="text-danger"></span>
                             </td>
                         </tr>
-
+                        <tr><td colspan="3"><hr /></td></tr>
+                        <tr>
+                            <td>
+                                <label asp-for="CustomersAuthentication.SecurityQuestion1" class="control-label">Select a security question:*</label>
+                                <select asp-for="CustomersAuthentication.SecurityQuestion1" asp-items="ViewBag.SecurityQuestions"></select>
+                                <span asp-validation-for="CustomersAuthentication.SecurityQuestion1" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="CustomersAuthentication.SQAnswer1" class="control-label">Answer*</label>
+                                <input type="password" asp-for="CustomersAuthentication.SQAnswer1" class="form-control" />
+                                <span asp-validation-for="CustomersAuthentication.SQAnswer1" class="text-danger"></span>
+                            </td>
+                        </tr>
                         <tr><td colspan="3"><hr /></td></tr>
                         <tr>
                             <td class="text-center" colspan="3">

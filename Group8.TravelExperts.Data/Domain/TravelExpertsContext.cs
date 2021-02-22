@@ -347,11 +347,11 @@ namespace Group8.TravelExperts.Data.Domain
             modelBuilder.Entity<CustomersAuthentication>(entity =>
             {
                 entity.HasKey(e => e.CustomerId)
-                    .HasName("PK__Customer__A4AE64D85B00C687");
+                    .HasName("PK__Customer__A4AE64D81B12D252");
 
                 entity.ToTable("Customers_Authentication");
 
-                entity.HasIndex(e => e.Username, "UQ__Customer__536C85E470903101")
+                entity.HasIndex(e => e.Username, "UQ__Customer__536C85E408465962")
                     .IsUnique();
 
                 entity.Property(e => e.CustomerId).ValueGeneratedNever();
@@ -359,6 +359,17 @@ namespace Group8.TravelExperts.Data.Domain
                 entity.Property(e => e.Password)
                     .IsRequired()
                     .HasMaxLength(50);
+
+                entity.Property(e => e.SecurityQuestion1)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasDefaultValueSql("('What is your favourite animated show?')");
+
+                entity.Property(e => e.SQAnswer1)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnName("SQAnswer1")
+                    .HasDefaultValueSql("('What is your favourite animated show?')");
 
                 entity.Property(e => e.Username)
                     .IsRequired()

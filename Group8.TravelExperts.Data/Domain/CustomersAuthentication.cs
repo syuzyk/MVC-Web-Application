@@ -21,6 +21,9 @@ namespace Group8.TravelExperts.Data.Domain
         [Required(ErrorMessage = "PLEASE RE-ENTER YOUR PASSWORD")]
         [Compare("Password", ErrorMessage = "Passwords do not match. Try again.")]
         public string ConfirmPassword { get; set; }
+        public string SecurityQuestion1 { get; set; }
+        [Required(ErrorMessage = "Please submit an answer")]
+        public string SQAnswer1 { get; set; }
         public virtual Customer Customer { get; set; }
     }
 

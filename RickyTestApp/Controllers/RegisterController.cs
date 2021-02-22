@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,30 @@ namespace RickyTestApp.Controllers
             var context = new TravelExpertsContext();
             var cutomers = context.Customers.Include(c => c.CustomersAuthentication).ToList();
             ViewBag.cust = cutomers;
+            List<SelectListItem> securityQuestions = new List<SelectListItem>()
+            {
+                new SelectListItem
+                {
+                    Text = "What is your mother's maiden name?",
+                    Value = "What is your mother's maiden name?"
+                },
+                new SelectListItem
+                {
+                    Text = "Where did you attend high school?",
+                    Value = "Where did you attend high school?"
+                },
+                new SelectListItem
+                {
+                    Text = "Why is Eric always dressed so nicely?",
+                    Value = "Why is Eric always dressed so nicely?"
+                },
+                new SelectListItem
+                {
+                    Text = "What is your favourite TV show?",
+                    Value = "What is your favourite TV show?"
+                }
+            };
+            ViewBag.SecurityQuestions = securityQuestions;
             return View();
             
         }
@@ -37,7 +62,31 @@ namespace RickyTestApp.Controllers
                 }
                 catch
                 {
-                    return View();
+                    List<SelectListItem> securityQuestions = new List<SelectListItem>()
+                    {
+                        new SelectListItem
+                        {
+                            Text = "What is your mother's maiden name?",
+                            Value = "What is your mother's maiden name?"
+                        },
+                        new SelectListItem
+                        {
+                            Text = "Where did you attend high school?",
+                            Value = "Where did you attend high school?"
+                        },
+                        new SelectListItem
+                        {
+                            Text = "Why is Eric always dressed so nicely?",
+                            Value = "Why is Eric always dressed so nicely?"
+                        },
+                        new SelectListItem
+                        {
+                            Text = "What is your favourite TV show?",
+                            Value = "What is your favourite TV show?"
+                        }
+                    };
+                    ViewBag.SecurityQuestions = securityQuestions;
+                return View();
                 }
             
 
