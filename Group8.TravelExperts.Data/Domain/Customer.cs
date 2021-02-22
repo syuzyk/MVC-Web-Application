@@ -19,7 +19,7 @@ namespace Group8.TravelExperts.Data.Domain
         }
 
         public int CustomerId { get; set; }
-        [Required (ErrorMessage ="PLEASE ENTER YOUR FIRST NAME")]
+        [Required(ErrorMessage = "PLEASE ENTER YOUR FIRST NAME")]
         public string CustFirstName { get; set; }
         [Required(ErrorMessage = "PLEASE ENTER YOUR LAST NAME")]
         public string CustLastName { get; set; }
@@ -36,12 +36,12 @@ namespace Group8.TravelExperts.Data.Domain
         [Required(ErrorMessage = "PLEASE ENTER YOUR PHONE NUMBER")]
         [RegularExpression(@"^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$", ErrorMessage = "PLEASE ENTER A VAILD PHONE NUMBER")]
         public string CustHomePhone { get; set; }
-       
+
         public string CustBusPhone { get; set; }
-        
+
         public string CustFax { get; set; }
 
-        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$", ErrorMessage = "PLEASE ENTER A VAILD EMAIL ADDRESS")]                                                                                                         
+        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$", ErrorMessage = "PLEASE ENTER A VAILD EMAIL ADDRESS")]
         public string CustEmail { get; set; }
         public int? AgentId { get; set; }
 
@@ -50,5 +50,10 @@ namespace Group8.TravelExperts.Data.Domain
         public virtual ICollection<Booking> Bookings { get; set; }
         public virtual ICollection<CreditCard> CreditCards { get; set; }
         public virtual ICollection<CustomersReward> CustomersRewards { get; set; }
+    }
+
+    public class CustomerManager
+    {
+        //public static void CheckIfUsernameUnique()
     }
 }

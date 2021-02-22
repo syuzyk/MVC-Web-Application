@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,11 +16,34 @@ namespace RickyTestApp.Controllers
 
         public ActionResult RegisterDetails()
         {
-           
-                var context = new TravelExpertsContext();
-                var cutomers = context.Customers.Include(c => c.CustomersAuthentication).ToList();
-                ViewBag.cust = cutomers;
-                return View();
+            var context = new TravelExpertsContext();
+            var cutomers = context.Customers.Include(c => c.CustomersAuthentication).ToList();
+            ViewBag.cust = cutomers;
+            List<SelectListItem> securityQuestions = new List<SelectListItem>()
+            {
+                new SelectListItem
+                {
+                    Text = "What is your mother's maiden name?",
+                    Value = "What is your mother's maiden name?"
+                },
+                new SelectListItem
+                {
+                    Text = "Where did you attend high school?",
+                    Value = "Where did you attend high school?"
+                },
+                new SelectListItem
+                {
+                    Text = "Why is Eric always dressed so nicely?",
+                    Value = "Why is Eric always dressed so nicely?"
+                },
+                new SelectListItem
+                {
+                    Text = "What is your favourite TV show?",
+                    Value = "What is your favourite TV show?"
+                }
+            };
+            ViewBag.SecurityQuestions = securityQuestions;
+            return View();
             
         }
 
@@ -27,38 +51,51 @@ namespace RickyTestApp.Controllers
         
         public ActionResult RegisterDetails(Customer c)
         {
+            List<SelectListItem> securityQuestions = new List<SelectListItem>()
+                {
+                    new SelectListItem
+                    {
+                        Text = "What is your mother's maiden name?",
+                        Value = "What is your mother's maiden name?"
+                    },
+                    new SelectListItem
+                    {
+                        Text = "Where did you attend high school?",
+                        Value = "Where did you attend high school?"
+                    },
+                    new SelectListItem
+                    {
+                        Text = "Why is Eric always dressed so nicely?",
+                        Value = "Why is Eric always dressed so nicely?"
+                    },
+                    new SelectListItem
+                    {
+                        Text = "What is your favourite TV show?",
+                        Value = "What is your favourite TV show?"
+                    }
+                };
+
+            ViewBag.SecurityQuestions = securityQuestions;
+
             if (ModelState.IsValid)
             {
-                var context = new TravelExpertsContext();
-                var ca = context.CustomersAuthentications.ToList();
-                var usernames = ca.Select(a => a.Username).Distinct();
-                if (usernames.Contains(c.CustomersAuthentication.Username, StringComparer.OrdinalIgnoreCase))
+                try
                 {
-                    ViewBag.Message = "User Name " + c.CustomersAuthentication.Username + " already exists";
-                    return View();
+                    var context = new TravelExpertsContext();
+                    context.Customers.Add(c);
+                    context.SaveChanges();
+                    TempData["LoginPrompt"] = "<script>alert('Your account has been created. You may log in with your username and password.');</script>";
+                    return RedirectToAction("Login", "Account");
                 }
-                else
+                catch
                 {
-                    try
-                    {
-                        context.Customers.Add(c);
-                        context.CustomersAuthentications.Add(c.CustomersAuthentication);
-                        context.SaveChanges();
-                        ViewBag.log = "You can now login and Enter in your account";
-                        return RedirectToAction("Login", "Account");
-                    }
-                    catch
-                    {
-                        return View();
-                    }
-
+                    return View();
                 }
             }
             else
             {
                 return View();
             }
-
         }
 
        [Authorize]
