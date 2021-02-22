@@ -55,15 +55,20 @@
                     var user = $("#uxuser").val();
                     var oldp = $("#uxoldpass").val();
                     var newp = $("#uxnewpass").val();
+                    if (user != "" && oldp != "" && newp != "") {
+                        $.ajax({
+                            method: 'GET',
+                            url: '/Register/EditAuth1',
+                            data: { id: Id, user: user, oldp: oldp, newp: newp }
 
-                    $.ajax({
-                        method: 'GET',
-                        url: '/Register/EditAuth1',
-                        data: { id: Id, user: user, oldp: oldp, newp: newp }
-
-                    }).done(function (result, statusText, xhdr) {
-                        $("#uxDisplay").html(result);
-                    });
+                        }).done(function (result, statusText, xhdr) {
+                            $("#uxDisplay").html(result);
+                        });
+                    }
+                    else {
+                        $("#uxDisplay").html("<p style='color:red;'> user name and passwords field can't be empty</p>");
+                    }
+                   
 
                 });////end click
 

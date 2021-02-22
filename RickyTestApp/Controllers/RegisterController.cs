@@ -144,23 +144,22 @@ namespace RickyTestApp.Controllers
             //}
             //else
             //{
-                var msg = "<h5 ";
-                
-                if (oldp != "" && newp != "")
+                var msg = "<p ";
+                try
                 {
                     if (CustomersAuthenticationManager.CheckOldPasswordThenUpdate(id, user, oldp, newp) == true)
-                        msg += "style='color:blue;'> Password changed successfully!</h5>";
+                        msg += "style='color:blue;'> Password changed successfully!</p>";
                     else
                         msg += "style='color:red;'> Current password was entered incorrectly. Password was not updated.</p>";
-                    
+
                     return Content(msg);
                 }
-                else
+                catch
                 {
-                    msg += "style='color:red;'> password can't be empty</p>";
-                    return Content(msg);
-                }
-            //}
+                    
+                    return View();
+                } 
+          
         }
     }
 
