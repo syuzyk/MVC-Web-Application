@@ -135,7 +135,7 @@ namespace RickyTestApp.Controllers
             return View(cust);
         }
         [Authorize]
-        public ActionResult EditAuth1(int id,string user,string oldp,string newp)
+        public ActionResult EditAuth1(int id,string user,string oldp,string newp,string confnewp)
         {
             //if (CustomersAuthenticationManager.UsernameIsTaken(user) == true)
             //{
@@ -146,18 +146,23 @@ namespace RickyTestApp.Controllers
             //{
                 var msg = "<h5 ";
                 
-                if (oldp != "" && newp != "")
+                if (oldp != "" && newp != "" && newp != null && confnewp != "" && confnewp != null && newp == confnewp)
                 {
-                    if (CustomersAuthenticationManager.CheckOldPasswordThenUpdate(id, user, oldp, newp) == true)
+                    if (CustomersAuthenticationManager.CheckOldPasswordThenUpdate(id, user, oldp, newp, confnewp) == true)
                         msg += "style='color:blue;'> Password changed successfully!</h5>";
                     else
                         msg += "style='color:red;'> Current password was entered incorrectly. Password was not updated.</p>";
                     
                     return Content(msg);
                 }
-                else
+            if (newp != "" && confnewp != "" && newp == confnewp)
                 {
-                    msg += "style='color:red;'> password can't be empty</p>";
+                    msg += "style='color:red;'> All fields must be filled in.</p>";
+                    return Content(msg);
+                }
+            else
+                {
+                    msg += "style='color:red;'> New password must match.</p>";
                     return Content(msg);
                 }
             //}
