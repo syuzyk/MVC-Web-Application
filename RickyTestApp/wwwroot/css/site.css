@@ -74,6 +74,12 @@ body {
 /*controls jumbotron color*/
 .jumbotron {
     background-color: #e0e8f6;
+    width: 100%;
+    margin-left: 0 auto;
+}
+
+.jumbotron-fluid{
+    width:105%;
 }
 
 /*controls color of navbar*/

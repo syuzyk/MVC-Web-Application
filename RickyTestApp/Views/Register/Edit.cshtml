@@ -4,9 +4,6 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>Customer</h4>
 <div class="jumbotron mt-4">
     <div class="text-left">
         <h1 class="text-center">Update Information</h1>
@@ -22,21 +19,18 @@
                         </tr>
 
                         <tr>
-                            <td>
-
+                            @*<td>
                                 <label asp-for="CustomerId" class="control-label"></label>
                                 <input asp-for="CustomerId" class="form-control" readonly />
                                 <span asp-validation-for="CustomerId" class="text-danger"></span>
-
-                            </td>
+                            </td>*@
                             <td>
-
-                                <label asp-for="CustFirstName" class="control-label"></label>
+                                <label asp-for="CustFirstName" class="control-label">First Name*</label>
                                 <input asp-for="CustFirstName" class="form-control" />
                                 <span asp-validation-for="CustFirstName" class="text-danger"></span>
                             </td>
                             <td>
-                                <label asp-for="CustLastName" class="control-label"></label>
+                                <label asp-for="CustLastName" class="control-label">Last Name*</label>
                                 <input asp-for="CustLastName" class="form-control" />
                                 <span asp-validation-for="CustLastName" class="text-danger"></span>
                             </td>
@@ -44,7 +38,7 @@
                         <tr><td colspan="3"><hr /></td></tr>
                         <tr>
                             <td colspan="3" style="padding-bottom: 20px;">
-                                <label asp-for="CustAddress" class="control-label"></label>
+                                <label asp-for="CustAddress" class="control-label">Street Address*</label>
                                 <input asp-for="CustAddress" class="form-control" />
                                 <span asp-validation-for="CustAddress" class="text-danger"></span>
                             </td>
@@ -52,17 +46,17 @@
 
                         <tr>
                             <td>
-                                <label asp-for="CustCity" class="control-label"></label>
+                                <label asp-for="CustCity" class="control-label">City*</label>
                                 <input asp-for="CustCity" class="form-control" />
                                 <span asp-validation-for="CustCity" class="text-danger"></span>
                             </td>
                             <td>
-                                <label asp-for="CustProv" class="control-label"></label>
+                                <label asp-for="CustProv" class="control-label">Province*</label>
                                 <input asp-for="CustProv" class="form-control" />
                                 <span asp-validation-for="CustProv" class="text-danger"></span>
                             </td>
                             <td>
-                                <label asp-for="CustPostal" class="control-label"></label>
+                                <label asp-for="CustPostal" class="control-label">Postal Code*</label>
                                 <input asp-for="CustPostal" class="form-control" />
                                 <span asp-validation-for="CustPostal" class="text-danger"></span>
                             </td>
@@ -70,17 +64,17 @@
                         <tr><td colspan="3"><hr /></td></tr>
                         <tr>
                             <td style="padding-bottom: 20px;">
-                                <label asp-for="CustHomePhone" class="control-label"></label>
+                                <label asp-for="CustHomePhone" class="control-label">Home Phone*</label>
                                 <input asp-for="CustHomePhone" class="form-control" />
                                 <span asp-validation-for="CustHomePhone" class="text-danger"></span>
                             </td>
                             <td>
-                                <label asp-for="CustBusPhone" class="control-label"></label>
+                                <label asp-for="CustBusPhone" class="control-label">Business Phone</label>
                                 <input asp-for="CustBusPhone" class="form-control" />
                                 <span asp-validation-for="CustBusPhone" class="text-danger"></span>
                             </td>
                             <td>
-                                <label asp-for="CustFax" class="control-label"></label>
+                                <label asp-for="CustFax" class="control-label">Fax Number</label>
                                 <input asp-for="CustFax" class="form-control" />
                                 <span asp-validation-for="CustFax" class="text-danger"></span>
                             </td>
@@ -88,7 +82,7 @@
                         <tr>
                             <td colspan="2">
 
-                                <label asp-for="CustEmail" class="control-label"></label>
+                                <label asp-for="CustEmail" class="control-label">Email*</label>
                                 <input asp-for="CustEmail" class="form-control" />
                                 <span asp-validation-for="CustEmail" class="text-danger"></span>
 
