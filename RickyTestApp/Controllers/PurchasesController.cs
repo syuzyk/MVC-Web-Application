@@ -15,9 +15,7 @@ namespace RickyTestApp.Controllers
         [Authorize]
         public IActionResult Index()
         {
-            TempData["msg"] = "";
-
-            var packagesPurchased = BookingDetailsManager.GetPurchasedPackages((int)TempData.Peek("CustomerId"));
+              var packagesPurchased = BookingDetailsManager.GetPurchasedPackages((int)TempData.Peek("CustomerId"));
 
             ViewData["Packages"] = packagesPurchased.Select(pkg => new PurchaseViewModel
             {
@@ -65,8 +63,8 @@ namespace RickyTestApp.Controllers
             DateTime today = DateTime.Today;
             int daysUntilTripStart = (tripStart - today).Days;
             if (daysUntilTripStart < 4)
-                TempData["msg"] = "<script>alert('Today is too close to the trip's start date. Please contact your agent.');</script>";
-                   
+                TempData["msg"] = "<script>alert('Today is too close to the trip start date. Please contact your agent.');</script>";
+
             else
             {
                 try
@@ -88,7 +86,7 @@ namespace RickyTestApp.Controllers
             DateTime today = DateTime.Today;
             int daysUntilTripStart = (tripStart - today).Days;
             if (daysUntilTripStart < 4)
-                TempData["msg"] = "<script>alert('Today is too close to the trip's start date. Please contact your agent.');</script>";
+                TempData["msg"] = "<script>alert('Today is too close to the trip start date. Please contact your agent.');</script>";
 
             else
             {
