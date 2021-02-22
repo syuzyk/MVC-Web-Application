@@ -15,6 +15,8 @@ namespace RickyTestApp.Controllers
         [Authorize]
         public IActionResult Index()
         {
+            TempData["msg"] = "";
+
             var packagesPurchased = BookingDetailsManager.GetPurchasedPackages((int)TempData.Peek("CustomerId"));
 
             ViewData["Packages"] = packagesPurchased.Select(pkg => new PurchaseViewModel
