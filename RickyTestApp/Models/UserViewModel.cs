@@ -1,4 +1,6 @@
-﻿namespace RickyTestApp.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RickyTestApp.Models
 {
     //Ricky wrote this code.
     public class UserViewModel
