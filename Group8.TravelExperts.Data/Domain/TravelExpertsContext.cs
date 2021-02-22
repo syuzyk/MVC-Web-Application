@@ -237,7 +237,7 @@ namespace Group8.TravelExperts.Data.Domain
 
                 entity.Property(e => e.IsPaid)
                     .IsRequired()
-                    .HasMaxLength(3)
+                    .HasMaxLength(20)
                     .HasDefaultValueSql("('YES')");
 
                 entity.Property(e => e.PkgName).HasMaxLength(50);
@@ -308,7 +308,7 @@ namespace Group8.TravelExperts.Data.Domain
                     .IsRequired()
                     .HasMaxLength(75);
 
-                entity.Property(e => e.CustBusPhone).HasMaxLength(10);
+                entity.Property(e => e.CustBusPhone).HasMaxLength(20);
 
                 entity.Property(e => e.CustCity)
                     .IsRequired()
@@ -316,7 +316,7 @@ namespace Group8.TravelExperts.Data.Domain
 
                 entity.Property(e => e.CustEmail).HasMaxLength(50);
 
-                entity.Property(e => e.CustFax).HasMaxLength(10);
+                entity.Property(e => e.CustFax).HasMaxLength(20);
 
                 entity.Property(e => e.CustFirstName)
                     .IsRequired()
@@ -324,7 +324,7 @@ namespace Group8.TravelExperts.Data.Domain
 
                 entity.Property(e => e.CustHomePhone)
                     .IsRequired()
-                    .HasMaxLength(10);
+                    .HasMaxLength(20);
 
                 entity.Property(e => e.CustLastName)
                     .IsRequired()
