@@ -36,6 +36,7 @@ namespace RickyTestApp.Controllers
 
             if (usr == null)
             {
+                TempData["PasswordError"] = "<tr style='color:red'><td colspan='2'>Password incorrect. Please try again.</td></tr>";
                 return View();
             }
 
