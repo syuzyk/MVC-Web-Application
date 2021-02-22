@@ -32,7 +32,8 @@ namespace RickyTestApp.Controllers
                     var context = new TravelExpertsContext();
                     context.Customers.Add(c);
                     context.SaveChanges();
-                    return RedirectToAction("Index", "Home");
+                    TempData["LoginPrompt"] = "<script>alert('Your account has been created. You may log in with your username and password.');</script>";
+                    return RedirectToAction("Login", "Account");
                 }
                 catch
                 {
