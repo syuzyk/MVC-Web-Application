@@ -107,15 +107,18 @@ namespace Group8.TravelExperts.Data.Domain
         {
             var context = new TravelExpertsContext();
             var u = context.CustomersAuthentications.SingleOrDefault(cp => cp.CustomerId == id);
-            if (u.Password == oldp)
-            {
-                u.Username = user;
-                u.Password = newp;
-                context.SaveChanges();
-                return true;
-            }
-            else
-                return false;
+         
+                if (u.Password == oldp)
+                {
+                    u.Username = user;
+                    u.Password = newp;
+                    /*u.Password = confnewp*/;
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                    return false;
+           
         }
     }         
 }

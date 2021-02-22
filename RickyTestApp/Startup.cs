@@ -45,7 +45,7 @@ namespace RickyTestApp
             }
 
             app.UseStatusCodePages();
-            
+
             app.UseStaticFiles();
 
             app.UseRouting();
