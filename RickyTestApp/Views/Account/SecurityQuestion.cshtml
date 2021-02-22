@@ -8,9 +8,9 @@
         <div class="row justify-content-center">
             <form asp-action="GetLink">
                 <h3>Answer the security question:</h3>
-                <table class="table col-4">
+                <table class="table">
                     <tr>
-                        <td>@TempData.Peek("Security Question")</td>
+                        <td colspan="2">@TempData.Peek("Security Question")</td>
                     </tr>
                     <tr>
                         <td><input type="password" asp-for="Attempt" /></td>

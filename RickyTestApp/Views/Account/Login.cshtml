@@ -20,11 +20,25 @@
                     </tr>
                     <tr>
                         <td>Username:</td>
-                        <td><input type="text" asp-for="Username" /></td>
+                        <td>
+                            <input id="uxUsername" type="text" asp-for="Username" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </td>
                     </tr>
                     <tr>
                         <td>Password:</td>
-                        <td><input type="password" asp-for="Password" /></td>
+                        <td>
+                            <input id="uxPassword" type="password" asp-for="Password" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </td>
                     </tr>
                     <tr>
                         <td colspan="2"><input type="submit" value="Log in" class="btn btn-primary" /></td>
@@ -37,3 +51,4 @@
         </div>
     </div>
 </div>
+
