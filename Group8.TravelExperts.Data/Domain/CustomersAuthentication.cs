@@ -30,7 +30,7 @@ namespace Group8.TravelExperts.Data.Domain
         public virtual Customer Customer { get; set; }
     }
 
-    //Ricky added manager and the first three methods.
+    //Ricky added manager and the first three methods.other three methods is by dhaval
     public class CustomersAuthenticationManager
     {
         /// <summary>
@@ -102,7 +102,11 @@ namespace Group8.TravelExperts.Data.Domain
             else
                 return false;
         }
-
+        /// <summary>
+        /// To get Customer Authentication object by id
+        /// </summary>
+        /// <param name="id">Customerid</param>
+        /// <returns></returns>
         public static CustomersAuthentication GetByCustomerId(int id)
         {
             var context = new TravelExpertsContext();
@@ -110,7 +114,11 @@ namespace Group8.TravelExperts.Data.Domain
             
             return cust;
         }
-
+        /// <summary>
+        /// to check the username written is not taken by previous users
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public static bool UsernameIsTaken(string user)
         {
             var context = new TravelExpertsContext();
@@ -121,7 +129,14 @@ namespace Group8.TravelExperts.Data.Domain
             else
                 return false;
         }
-
+        /// <summary>
+        /// while resetting the password check the old password is correct or not
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="user"></param>
+        /// <param name="oldp"></param>
+        /// <param name="newp"></param>
+        /// <returns></returns>
         public static bool CheckOldPasswordThenUpdate(int id, string user, string oldp, string newp)
         {
             var context = new TravelExpertsContext();

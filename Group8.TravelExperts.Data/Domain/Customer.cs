@@ -51,30 +51,31 @@ namespace Group8.TravelExperts.Data.Domain
         public virtual ICollection<CreditCard> CreditCards { get; set; }
         public virtual ICollection<CustomersReward> CustomersRewards { get; set; }
     }
-
+    //Dhaval wrote this code
     public class CustomerManager
     {
+        //to get all customers 
         public static List<Customer> Registration()
         {
             var context = new TravelExpertsContext();
             var customers = context.Customers.Include(c => c.CustomersAuthentication).ToList();
             return customers;
         }
-
+        //to add a new customer
         public static void Add(Customer c)
         {
             var context = new TravelExpertsContext();
             context.Customers.Add(c);
             context.SaveChanges();
         }
-
+        //find customer with custome authentication details
         public static Customer GetAuthenticatedCustomerByID(int id)
         {
             var context = new TravelExpertsContext();
             var cust = context.Customers.Include(ca => ca.CustomersAuthentication).SingleOrDefault(c => c.CustomerId == id);
             return cust;
         }
-
+        //update customer
         public static void Update(int id, Customer c)
         {
             var context = new TravelExpertsContext();

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
-
+//Dhaval wrote this code 
 namespace RickyTestApp.Controllers
 {
     public class RegisterController : Controller
