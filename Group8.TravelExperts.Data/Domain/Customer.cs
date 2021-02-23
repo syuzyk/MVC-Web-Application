@@ -16,6 +16,8 @@ namespace Group8.TravelExperts.Data.Domain
             CustomersRewards = new HashSet<CustomersReward>();
         }
 
+        //Tristen added these validations
+
         public int CustomerId { get; set; }
         [Required(ErrorMessage = "Please enter your first name.")]
         public string CustFirstName { get; set; }

@@ -9,6 +9,7 @@ using System.Linq;
 
 namespace Group8.TravelExperts.Data.Domain
 {
+    //Stephen and Tristen added these validations
     public partial class CustomersAuthentication
     {
         public int CustomerId { get; set; }
