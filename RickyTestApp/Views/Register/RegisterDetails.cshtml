@@ -92,7 +92,7 @@
                                 <label id="user" asp-for="CustomersAuthentication.Username" class="control-label">Username*</label>
                                 <input asp-for="CustomersAuthentication.Username" class="form-control" />
                                 <span asp-validation-for="CustomersAuthentication.Username" class="text-danger"></span>
-                                <p class="text-danger">@Html.Label((string)ViewBag.Message)</p>
+                                <p class="text-danger">@ViewBag.Message</p>
 
                             </td>
                             <td>

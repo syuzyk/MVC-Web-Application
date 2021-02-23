@@ -224,16 +224,24 @@ namespace RickyTestApp.Controllers
 
             if (ModelState.IsValid)
             {
-                try
+                if (CustomersAuthenticationManager.UsernameIsTaken(c.CustomersAuthentication.Username) == true)
                 {
-                    CustomerManager.Add(c);
-
-                    TempData["LoginPrompt"] = "<script>alert('Your account has been created. You may log in with your username and password.');</script>";
-                    return RedirectToAction("Login", "Account");
-                }
-                catch
-                {
+                    ViewBag.Message = "User Name " + c.CustomersAuthentication.Username + " already exists";
                     return View();
+                }
+                else
+                {
+                    try
+                    {
+                        CustomerManager.Add(c);
+
+                        TempData["LoginPrompt"] = "<script>alert('Your account has been created. You may log in with your username and password.');</script>";
+                        return RedirectToAction("Login", "Account");
+                    }
+                    catch
+                    {
+                        return View();
+                    }
                 }
             }
             else
@@ -434,14 +442,8 @@ namespace RickyTestApp.Controllers
         [Authorize]
         public ActionResult EditAuth1(int id, string user, string oldp, string newp, string confnewp)
         {
-            //if (CustomersAuthenticationManager.UsernameIsTaken(user) == true)
-            //{
-            //    ViewBag.Message = "User Name " + user + " already exists";
-            //    return View();
-            //}
-            //else
-            //{
-            var msg = "<p ";
+            
+                var msg = "<p ";
 
             if (newp == confnewp)
             {
