@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Group8.TravelExperts.Data.Domain
 {
-    //Ricky added this code.
+    //Ricky added this code. Model for displaying orders.
     
     public class PurchaseModel
     {

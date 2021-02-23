@@ -2,7 +2,7 @@
 
 namespace RickyTestApp.Models
 {
-    //Ricky wrote this code.
+    //Ricky wrote this code for organizing login page.
     public class UserViewModel
     {
         [Required(ErrorMessage = "Please enter your username")]

@@ -28,7 +28,7 @@ namespace Group8.TravelExperts.Data.Domain
         [Required(ErrorMessage = "Please enter your city.")]
         public string CustCity { get; set; }
         [Required(ErrorMessage = "Please enter your Province code.")]
-        [MaxLength(2)]
+        //[MinLength(2)]
         public string CustProv { get; set; }
         [Required(ErrorMessage = "Please enter your Canadian Postal Code.")]
         [RegularExpression(@"^[A-Za-z]\d[A-Za-z] ?\d[A-Za-z]\d$", ErrorMessage = "Please enter a valid Canadian Postal Code. For example: A1B 2C3")] // ~ TS

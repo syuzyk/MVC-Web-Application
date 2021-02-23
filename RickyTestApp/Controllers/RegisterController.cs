@@ -8,7 +8,7 @@ namespace RickyTestApp.Controllers
 {
     public class RegisterController : Controller
     {
-
+        //Ricky added select lists to this code.
         public ActionResult RegisterDetails()
         {
             ViewBag.cust = CustomerManager.Registration();
@@ -35,7 +35,84 @@ namespace RickyTestApp.Controllers
                     Value = "What is your favourite TV show?"
                 }
             };
+
             ViewBag.SecurityQuestions = securityQuestions;
+
+            List<SelectListItem> provinces = new List<SelectListItem>()
+            {
+                new SelectListItem
+                {
+                    Text = "",
+                    Value = ""
+                },
+                new SelectListItem
+                {
+                    Text = "AB",
+                    Value = "AB"
+                },
+                new SelectListItem
+                {
+                    Text = "BC",
+                    Value = "BC"
+                },
+                new SelectListItem
+                {
+                    Text = "MB",
+                    Value = "MB"
+                },
+                new SelectListItem
+                {
+                    Text = "NB",
+                    Value = "NB"
+                },
+                new SelectListItem
+                {
+                    Text = "NL",
+                    Value = "NL"
+                },
+                new SelectListItem
+                {
+                    Text = "NS",
+                    Value = "NS"
+                },
+                new SelectListItem
+                {
+                    Text = "NT",
+                    Value = "NT"
+                },
+                new SelectListItem
+                {
+                    Text = "NU",
+                    Value = "NU"
+                },
+                new SelectListItem
+                {
+                    Text = "ON",
+                    Value = "ON"
+                },
+                new SelectListItem
+                {
+                    Text = "PE",
+                    Value = "PE"
+                },
+                new SelectListItem
+                {
+                    Text = "QC",
+                    Value = "QC"
+                },
+                new SelectListItem
+                {
+                    Text = "SK",
+                    Value = "SK"
+                },
+                new SelectListItem
+                {
+                    Text = "YK",
+                    Value = "YK"
+                }
+            };
+            ViewBag.Provinces = provinces;
+
             return View();
 
         }
@@ -70,6 +147,81 @@ namespace RickyTestApp.Controllers
 
             ViewBag.SecurityQuestions = securityQuestions;
 
+            List<SelectListItem> provinces = new List<SelectListItem>()
+            {
+                new SelectListItem
+                {
+                    Text = "",
+                    Value = ""
+                },
+                new SelectListItem
+                {
+                    Text = "AB",
+                    Value = "AB"
+                },
+                new SelectListItem
+                {
+                    Text = "BC",
+                    Value = "BC"
+                },
+                new SelectListItem
+                {
+                    Text = "MB",
+                    Value = "MB"
+                },
+                new SelectListItem
+                {
+                    Text = "NB",
+                    Value = "NB"
+                },
+                new SelectListItem
+                {
+                    Text = "NL",
+                    Value = "NL"
+                },
+                new SelectListItem
+                {
+                    Text = "NS",
+                    Value = "NS"
+                },
+                new SelectListItem
+                {
+                    Text = "NT",
+                    Value = "NT"
+                },
+                new SelectListItem
+                {
+                    Text = "NU",
+                    Value = "NU"
+                },
+                new SelectListItem
+                {
+                    Text = "ON",
+                    Value = "ON"
+                },
+                new SelectListItem
+                {
+                    Text = "PE",
+                    Value = "PE"
+                },
+                new SelectListItem
+                {
+                    Text = "QC",
+                    Value = "QC"
+                },
+                new SelectListItem
+                {
+                    Text = "SK",
+                    Value = "SK"
+                },
+                new SelectListItem
+                {
+                    Text = "YK",
+                    Value = "YK"
+                }
+            };
+            ViewBag.Provinces = provinces;
+
             if (ModelState.IsValid)
             {
                 try
@@ -93,6 +245,81 @@ namespace RickyTestApp.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
+            List<SelectListItem> provinces = new List<SelectListItem>()
+            {
+                new SelectListItem
+                {
+                    Text = "",
+                    Value = ""
+                },
+                new SelectListItem
+                {
+                    Text = "AB",
+                    Value = "AB"
+                },
+                new SelectListItem
+                {
+                    Text = "BC",
+                    Value = "BC"
+                },
+                new SelectListItem
+                {
+                    Text = "MB",
+                    Value = "MB"
+                },
+                new SelectListItem
+                {
+                    Text = "NB",
+                    Value = "NB"
+                },
+                new SelectListItem
+                {
+                    Text = "NL",
+                    Value = "NL"
+                },
+                new SelectListItem
+                {
+                    Text = "NS",
+                    Value = "NS"
+                },
+                new SelectListItem
+                {
+                    Text = "NT",
+                    Value = "NT"
+                },
+                new SelectListItem
+                {
+                    Text = "NU",
+                    Value = "NU"
+                },
+                new SelectListItem
+                {
+                    Text = "ON",
+                    Value = "ON"
+                },
+                new SelectListItem
+                {
+                    Text = "PE",
+                    Value = "PE"
+                },
+                new SelectListItem
+                {
+                    Text = "QC",
+                    Value = "QC"
+                },
+                new SelectListItem
+                {
+                    Text = "SK",
+                    Value = "SK"
+                },
+                new SelectListItem
+                {
+                    Text = "YK",
+                    Value = "YK"
+                }
+            };
+            ViewBag.Provinces = provinces;
+
             Customer cust = CustomerManager.GetAuthenticatedCustomerByID(id);
 
             return View(cust);
@@ -104,6 +331,81 @@ namespace RickyTestApp.Controllers
         [Authorize]
         public ActionResult Edit(int id, Customer c)
         {
+            List<SelectListItem> provinces = new List<SelectListItem>()
+            {
+                new SelectListItem
+                {
+                    Text = "",
+                    Value = ""
+                },
+                new SelectListItem
+                {
+                    Text = "AB",
+                    Value = "AB"
+                },
+                new SelectListItem
+                {
+                    Text = "BC",
+                    Value = "BC"
+                },
+                new SelectListItem
+                {
+                    Text = "MB",
+                    Value = "MB"
+                },
+                new SelectListItem
+                {
+                    Text = "NB",
+                    Value = "NB"
+                },
+                new SelectListItem
+                {
+                    Text = "NL",
+                    Value = "NL"
+                },
+                new SelectListItem
+                {
+                    Text = "NS",
+                    Value = "NS"
+                },
+                new SelectListItem
+                {
+                    Text = "NT",
+                    Value = "NT"
+                },
+                new SelectListItem
+                {
+                    Text = "NU",
+                    Value = "NU"
+                },
+                new SelectListItem
+                {
+                    Text = "ON",
+                    Value = "ON"
+                },
+                new SelectListItem
+                {
+                    Text = "PE",
+                    Value = "PE"
+                },
+                new SelectListItem
+                {
+                    Text = "QC",
+                    Value = "QC"
+                },
+                new SelectListItem
+                {
+                    Text = "SK",
+                    Value = "SK"
+                },
+                new SelectListItem
+                {
+                    Text = "YK",
+                    Value = "YK"
+                }
+            };
+            ViewBag.Provinces = provinces; 
+            
             if (ModelState.IsValid)
             {
                 try

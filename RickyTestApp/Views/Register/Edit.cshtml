@@ -60,7 +60,8 @@
                             </td>
                             <td>
                                 <label asp-for="CustProv" class="control-label">Province*</label>
-                                <input asp-for="CustProv" class="form-control" />
+                                <br />
+                                <select asp-for="CustProv" asp-items="ViewBag.Provinces"></select>
                                 <span asp-validation-for="CustProv" class="text-danger"></span>
                             </td>
                             <td>
@@ -118,6 +119,7 @@
     <a asp-controller="Home" asp-action="Index">Back to Home</a>
 </div>
 
+@*Ricky added this script*@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script>

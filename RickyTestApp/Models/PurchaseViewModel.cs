@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RickyTestApp.Models
 {
-    //Ricky wrote this code.
+    //Ricky wrote this code for displaying orders.
     public class PurchaseViewModel
     {
         public int BookingDetailId { get; set; }

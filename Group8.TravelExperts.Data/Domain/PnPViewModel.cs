@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Group8.TravelExperts.Data.Domain
 {
-    //Ricky added this code.
+    //Ricky added this code. Model for getting and displaying packages and products to be sold.
     public class PnPViewModel
     {
         [Display(Name = "Package Name")]

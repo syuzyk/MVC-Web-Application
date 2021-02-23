@@ -4,6 +4,7 @@ using System.Text;
 namespace Group8.TravelExperts.Data.Domain
 {
     //Ricky added this code.
+    //Object and its methods generates a BookingNo in teh format of three letters and three numbers.
     public class BookingNoGenerator
     {
         public static string GenerateBookingNo()
