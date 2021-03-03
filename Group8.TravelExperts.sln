@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Group8.TravelExperts.Data", "Group8.TravelExperts.Data\Group8.TravelExperts.Data.csproj", "{943AE601-9AEE-4C2E-BE4C-422505E8C47E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RickyTestApp", "RickyTestApp\RickyTestApp.csproj", "{45CB581C-B582-4E68-B9EB-561FC908664E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Group8.TravelExperts.Application", "RickyTestApp\Group8.TravelExperts.Application.csproj", "{45CB581C-B582-4E68-B9EB-561FC908664E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
